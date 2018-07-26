@@ -142,10 +142,6 @@
     <EmbeddedResource Include="www\plugins\bootstrap\fonts\glyphicons-halflings-regular.woff2" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="www\index.html" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="www\css\index.css" />
     <EmbeddedResource Include="www\js\jquery-3.3.1.min.js" />
   </ItemGroup>
   <ItemGroup>
@@ -288,8 +284,6 @@
     <EmbeddedResource Include="www\plugins\layui\lay\modules\tree.js" />
     <EmbeddedResource Include="www\plugins\layui\lay\modules\upload.js" />
     <EmbeddedResource Include="www\plugins\layui\lay\modules\util.js" />
-    <EmbeddedResource Include="www\js\index.js" />
-    <EmbeddedResource Include="www\css\style.css" />
     <EmbeddedResource Include="www\css\main.css" />
     <Content Include="www\functionalpages\batch.html" />
     <Content Include="www\functionalpages\issue.html" />
