@@ -1,0 +1,305 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{AADECBFF-456B-4EEF-9438-9536A6AC328A}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>TestTools</RootNamespace>
+    <AssemblyName>TestTools</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationManifest>app.manifest</ApplicationManifest>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>Resources\icon.ico</ApplicationIcon>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="NetDimension.NanUI.XP, Version=0.6.2526.20915, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\NetDimension.NanUI.XP.0.6.2526.13\lib\NetDimension.NanUI.XP.dll</HintPath>
+    </Reference>
+    <Reference Include="SharpConfig, Version=3.2.8.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\sharpconfig.3.2.8\lib\net20\SharpConfig.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="DefaultParams.cs" />
+    <Compile Include="Devices\DistanceDevice.cs" />
+    <Compile Include="Devices\IDevice.cs" />
+    <Compile Include="Devices\PersonnelDevice.cs" />
+    <Compile Include="EvhManager\CardManagerEvh.cs" />
+    <Compile Include="EvhManager\ConfigureManagerEvh.cs" />
+    <Compile Include="EvhManager\PwdManagerEvh.cs" />
+    <Compile Include="EvhManager\UserManagerEvh.cs" />
+    <Compile Include="EvhManager\WirelessManagerEvh.cs" />
+    <Compile Include="Main.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Main.Designer.cs">
+      <DependentUpon>Main.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OverTimeManager.cs" />
+    <Compile Include="PortDataManagment\CardOperation\CardBatch.cs" />
+    <Compile Include="PortDataManagment\CardOperation\CardBatchPersonnel.cs" />
+    <Compile Include="PortDataManagment\CardOperation\CardIssue.cs" />
+    <Compile Include="PortDataManagment\CardOperation\CardIssuePersonnel.cs" />
+    <Compile Include="PortDataManagment\CardOperation\CardLoss.cs" />
+    <Compile Include="PortDataManagment\CardOperation\CardRefresh.cs" />
+    <Compile Include="PortDataManagment\CardOperation\ViceCardRemoveLock.cs" />
+    <Compile Include="PortDataManagment\ClientNumber\NumberDownload.cs" />
+    <Compile Include="PortDataManagment\ClientNumber\PasswordDownload.cs" />
+    <Compile Include="PortDataManagment\ClientNumber\TimeDownload.cs" />
+    <Compile Include="PortDataManagment\EncryptOperation\DistanceCardEncrypt.cs" />
+    <Compile Include="PortDataManagment\EncryptOperation\DistanceDeviceEncrypt.cs" />
+    <Compile Include="PortDataManagment\EncryptOperation\IcCardEncrypt.cs" />
+    <Compile Include="PortDataManagment\EncryptOperation\IcDeviceEncrypt.cs" />
+    <Compile Include="PortDataManagment\ISerialPortDataReceived.cs" />
+    <Compile Include="PortDataManagment\ReceivedManager.cs" />
+    <Compile Include="PortDataManagment\WirelessTest\ReadIcCard.cs" />
+    <Compile Include="PortDataManagment\WirelessTest\SettingModule.cs" />
+    <Compile Include="PortDataManagment\WirelessTest\WirelessQuery.cs" />
+    <Compile Include="PortDataManagment\WirelessTest\WirelessTest.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SerialPort\ConnectionSerialDevice.cs" />
+    <Compile Include="SerialPort\PortMonitor.cs" />
+    <Compile Include="SerialPort\SerialPortManager.cs" />
+    <Compile Include="ViewCallFunction.cs" />
+    <EmbeddedResource Include="Main.resx">
+      <DependentUpon>Main.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <None Include="App.config" />
+    <None Include="app.manifest" />
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <EmbeddedResource Include="www\fonts\fontawesome-webfont.eot" />
+    <EmbeddedResource Include="www\fonts\fontawesome-webfont.ttf" />
+    <EmbeddedResource Include="www\fonts\fontawesome-webfont.woff" />
+    <EmbeddedResource Include="www\fonts\fontawesome-webfont.woff2" />
+    <EmbeddedResource Include="www\fonts\FontAwesome.otf" />
+    <EmbeddedResource Include="www\plugins\layui\font\iconfont.eot" />
+    <EmbeddedResource Include="www\plugins\layui\font\iconfont.ttf" />
+    <EmbeddedResource Include="www\plugins\layui\font\iconfont.woff" />
+    <None Include="www\plugins\bootstrap\css\bootstrap-theme.css.map" />
+    <None Include="www\plugins\bootstrap\css\bootstrap-theme.min.css.map" />
+    <None Include="www\plugins\bootstrap\css\bootstrap.css.map" />
+    <None Include="www\plugins\bootstrap\css\bootstrap.min.css.map" />
+    <EmbeddedResource Include="www\plugins\bootstrap\fonts\glyphicons-halflings-regular.eot" />
+    <EmbeddedResource Include="www\plugins\bootstrap\fonts\glyphicons-halflings-regular.ttf" />
+    <EmbeddedResource Include="www\plugins\bootstrap\fonts\glyphicons-halflings-regular.woff" />
+    <EmbeddedResource Include="www\plugins\bootstrap\fonts\glyphicons-halflings-regular.woff2" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="www\index.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="www\css\index.css" />
+    <EmbeddedResource Include="www\js\jquery-3.3.1.min.js" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Bll\Bll.csproj">
+      <Project>{960c2083-20bf-431c-a242-3dc10d44be04}</Project>
+      <Name>Bll</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Model\Model.csproj">
+      <Project>{078c5a4a-76db-4e7d-849c-77d2e6435222}</Project>
+      <Name>Model</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="www\fonts\fontawesome-webfont.svg" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="www\css\font-awesome.css" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="www\plugins\formSelects\formSelects-v4.min.js" />
+    <EmbeddedResource Include="www\images\device1.png" />
+    <EmbeddedResource Include="www\images\device2.png" />
+    <EmbeddedResource Include="www\plugins\basicContext\css\basicContext.min.css" />
+    <EmbeddedResource Include="www\plugins\basicContext\js\basicContext.min.js" />
+    <EmbeddedResource Include="www\plugins\basicContext\themes\default.min.css" />
+    <None Include="Resources\icon.ico" />
+    <Content Include="www\plugins\bootstrap\css\bootstrap-theme.css" />
+    <Content Include="www\plugins\bootstrap\css\bootstrap-theme.min.css" />
+    <Content Include="www\plugins\bootstrap\css\bootstrap.css" />
+    <EmbeddedResource Include="www\plugins\bootstrap\css\bootstrap.min.css" />
+    <EmbeddedResource Include="www\plugins\bootstrap\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="www\plugins\bootstrap\js\bootstrap.js" />
+    <EmbeddedResource Include="www\plugins\bootstrap\js\bootstrap.min.js" />
+    <Content Include="www\plugins\bootstrap\js\npm.js" />
+    <EmbeddedResource Include="www\main.html" />
+    <EmbeddedResource Include="www\js\main.js" />
+    <EmbeddedResource Include="www\js\modernizr.js" />
+    <EmbeddedResource Include="www\js\velocity.min.js" />
+    <EmbeddedResource Include="www\plugins\formSelects\formSelects-v4.css" />
+    <EmbeddedResource Include="www\plugins\formSelects\formSelects-v4.js" />
+    <EmbeddedResource Include="www\plugins\layui\css\layui.css" />
+    <EmbeddedResource Include="www\plugins\layui\css\layui.mobile.css" />
+    <EmbeddedResource Include="www\plugins\layui\css\modules\code.css" />
+    <EmbeddedResource Include="www\plugins\layui\css\modules\laydate\default\laydate.css" />
+    <EmbeddedResource Include="www\plugins\layui\css\modules\layer\default\icon-ext.png" />
+    <EmbeddedResource Include="www\plugins\layui\css\modules\layer\default\icon.png" />
+    <EmbeddedResource Include="www\plugins\layui\css\modules\layer\default\layer.css" />
+    <EmbeddedResource Include="www\plugins\layui\css\modules\layer\default\loading-0.gif" />
+    <EmbeddedResource Include="www\plugins\layui\css\modules\layer\default\loading-1.gif" />
+    <EmbeddedResource Include="www\plugins\layui\css\modules\layer\default\loading-2.gif" />
+    <EmbeddedResource Include="www\plugins\layui\font\iconfont.svg" />
+    <EmbeddedResource Include="www\plugins\layui\images\face\0.gif" />
+    <EmbeddedResource Include="www\plugins\layui\images\face\1.gif" />
+    <EmbeddedResource Include="www\plugins\layui\images\face\10.gif" />
+    <EmbeddedResource Include="www\plugins\layui\images\face\11.gif" />
+    <EmbeddedResource Include="www\plugins\layui\images\face\12.gif" />
+    <EmbeddedResource Include="www\plugins\layui\images\face\13.gif" />
+    <EmbeddedResource Include="www\plugins\layui\images\face\14.gif" />
+    <EmbeddedResource Include="www\plugins\layui\images\face\15.gif" />
+    <EmbeddedResource Include="www\plugins\layui\images\face\16.gif" />
+    <EmbeddedResource Include="www\plugins\layui\images\face\17.gif" />
+    <EmbeddedResource Include="www\plugins\layui\images\face\18.gif" />
+    <EmbeddedResource Include="www\plugins\layui\images\face\19.gif" />
+    <EmbeddedResource Include="www\plugins\layui\images\face\2.gif" />
+    <EmbeddedResource Include="www\plugins\layui\images\face\20.gif" />
+    <EmbeddedResource Include="www\plugins\layui\images\face\21.gif" />
+    <EmbeddedResource Include="www\plugins\layui\images\face\22.gif" />
+    <EmbeddedResource Include="www\plugins\layui\images\face\23.gif" />
+    <EmbeddedResource Include="www\plugins\layui\images\face\24.gif" />
+    <EmbeddedResource Include="www\plugins\layui\images\face\25.gif" />
+    <EmbeddedResource Include="www\plugins\layui\images\face\26.gif" />
+    <EmbeddedResource Include="www\plugins\layui\images\face\27.gif" />
+    <EmbeddedResource Include="www\plugins\layui\images\face\28.gif" />
+    <EmbeddedResource Include="www\plugins\layui\images\face\29.gif" />
+    <EmbeddedResource Include="www\plugins\layui\images\face\3.gif" />
+    <EmbeddedResource Include="www\plugins\layui\images\face\30.gif" />
+    <EmbeddedResource Include="www\plugins\layui\images\face\31.gif" />
+    <EmbeddedResource Include="www\plugins\layui\images\face\32.gif" />
+    <EmbeddedResource Include="www\plugins\layui\images\face\33.gif" />
+    <EmbeddedResource Include="www\plugins\layui\images\face\34.gif" />
+    <EmbeddedResource Include="www\plugins\layui\images\face\35.gif" />
+    <EmbeddedResource Include="www\plugins\layui\images\face\36.gif" />
+    <EmbeddedResource Include="www\plugins\layui\images\face\37.gif" />
+    <EmbeddedResource Include="www\plugins\layui\images\face\38.gif" />
+    <EmbeddedResource Include="www\plugins\layui\images\face\39.gif" />
+    <EmbeddedResource Include="www\plugins\layui\images\face\4.gif" />
+    <EmbeddedResource Include="www\plugins\layui\images\face\40.gif" />
+    <EmbeddedResource Include="www\plugins\layui\images\face\41.gif" />
+    <EmbeddedResource Include="www\plugins\layui\images\face\42.gif" />
+    <EmbeddedResource Include="www\plugins\layui\images\face\43.gif" />
+    <EmbeddedResource Include="www\plugins\layui\images\face\44.gif" />
+    <EmbeddedResource Include="www\plugins\layui\images\face\45.gif" />
+    <EmbeddedResource Include="www\plugins\layui\images\face\46.gif" />
+    <EmbeddedResource Include="www\plugins\layui\images\face\47.gif" />
+    <EmbeddedResource Include="www\plugins\layui\images\face\48.gif" />
+    <EmbeddedResource Include="www\plugins\layui\images\face\49.gif" />
+    <EmbeddedResource Include="www\plugins\layui\images\face\5.gif" />
+    <EmbeddedResource Include="www\plugins\layui\images\face\50.gif" />
+    <EmbeddedResource Include="www\plugins\layui\images\face\51.gif" />
+    <EmbeddedResource Include="www\plugins\layui\images\face\52.gif" />
+    <EmbeddedResource Include="www\plugins\layui\images\face\53.gif" />
+    <EmbeddedResource Include="www\plugins\layui\images\face\54.gif" />
+    <EmbeddedResource Include="www\plugins\layui\images\face\55.gif" />
+    <EmbeddedResource Include="www\plugins\layui\images\face\56.gif" />
+    <EmbeddedResource Include="www\plugins\layui\images\face\57.gif" />
+    <EmbeddedResource Include="www\plugins\layui\images\face\58.gif" />
+    <EmbeddedResource Include="www\plugins\layui\images\face\59.gif" />
+    <EmbeddedResource Include="www\plugins\layui\images\face\6.gif" />
+    <EmbeddedResource Include="www\plugins\layui\images\face\60.gif" />
+    <EmbeddedResource Include="www\plugins\layui\images\face\61.gif" />
+    <EmbeddedResource Include="www\plugins\layui\images\face\62.gif" />
+    <EmbeddedResource Include="www\plugins\layui\images\face\63.gif" />
+    <EmbeddedResource Include="www\plugins\layui\images\face\64.gif" />
+    <EmbeddedResource Include="www\plugins\layui\images\face\65.gif" />
+    <EmbeddedResource Include="www\plugins\layui\images\face\66.gif" />
+    <EmbeddedResource Include="www\plugins\layui\images\face\67.gif" />
+    <EmbeddedResource Include="www\plugins\layui\images\face\68.gif" />
+    <EmbeddedResource Include="www\plugins\layui\images\face\69.gif" />
+    <EmbeddedResource Include="www\plugins\layui\images\face\7.gif" />
+    <EmbeddedResource Include="www\plugins\layui\images\face\70.gif" />
+    <EmbeddedResource Include="www\plugins\layui\images\face\71.gif" />
+    <EmbeddedResource Include="www\plugins\layui\images\face\8.gif" />
+    <EmbeddedResource Include="www\plugins\layui\images\face\9.gif" />
+    <EmbeddedResource Include="www\plugins\layui\layui.all.js" />
+    <EmbeddedResource Include="www\plugins\layui\layui.js" />
+    <EmbeddedResource Include="www\plugins\layui\lay\modules\carousel.js" />
+    <EmbeddedResource Include="www\plugins\layui\lay\modules\code.js" />
+    <EmbeddedResource Include="www\plugins\layui\lay\modules\element.js" />
+    <EmbeddedResource Include="www\plugins\layui\lay\modules\flow.js" />
+    <EmbeddedResource Include="www\plugins\layui\lay\modules\form.js" />
+    <EmbeddedResource Include="www\plugins\layui\lay\modules\jquery.js" />
+    <EmbeddedResource Include="www\plugins\layui\lay\modules\laydate.js" />
+    <EmbeddedResource Include="www\plugins\layui\lay\modules\layedit.js" />
+    <EmbeddedResource Include="www\plugins\layui\lay\modules\layer.js" />
+    <EmbeddedResource Include="www\plugins\layui\lay\modules\laypage.js" />
+    <EmbeddedResource Include="www\plugins\layui\lay\modules\laytpl.js" />
+    <EmbeddedResource Include="www\plugins\layui\lay\modules\mobile.js" />
+    <EmbeddedResource Include="www\plugins\layui\lay\modules\rate.js" />
+    <EmbeddedResource Include="www\plugins\layui\lay\modules\table.js" />
+    <EmbeddedResource Include="www\plugins\layui\lay\modules\tree.js" />
+    <EmbeddedResource Include="www\plugins\layui\lay\modules\upload.js" />
+    <EmbeddedResource Include="www\plugins\layui\lay\modules\util.js" />
+    <EmbeddedResource Include="www\js\index.js" />
+    <EmbeddedResource Include="www\css\style.css" />
+    <EmbeddedResource Include="www\css\main.css" />
+    <Content Include="www\functionalpages\batch.html" />
+    <Content Include="www\functionalpages\issue.html" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="..\packages\NetDimension.NanUI.Cef2526.3.2526.1373.1\build\NetDimension.NanUI.Cef2526.targets" Condition="Exists('..\packages\NetDimension.NanUI.Cef2526.3.2526.1373.1\build\NetDimension.NanUI.Cef2526.targets')" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>这台计算机上缺少此项目引用的 NuGet 程序包。使用“NuGet 程序包还原”可下载这些程序包。有关更多信息，请参见 http://go.microsoft.com/fwlink/?LinkID=322105。缺少的文件是 {0}。</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\NetDimension.NanUI.Cef2526.3.2526.1373.1\build\NetDimension.NanUI.Cef2526.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\NetDimension.NanUI.Cef2526.3.2526.1373.1\build\NetDimension.NanUI.Cef2526.targets'))" />
+  </Target>
+</Project>

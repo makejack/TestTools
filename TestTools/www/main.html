@@ -1,0 +1,1076 @@
+<html>
+
+<head>
+    <meta charset="UTF-8">
+
+    <link rel="stylesheet" href="css/font-awesome.css">
+    <link rel="stylesheet" href="plugins/basicContext/css/basicContext.min.css">
+    <link rel="stylesheet" href="plugins/basicContext/themes/default.min.css">
+    <link rel="stylesheet" href="plugins/formSelects/formSelects-v4.css">
+    <link rel="stylesheet" href="plugins/layui/css/layui.css">
+    <link rel="stylesheet" href="css/main.css">
+
+    <script type="text/javascript" src="js/jquery-3.3.1.min.js"></script>
+    <script type="text/javascript" src="plugins/basicContext/js/basicContext.min.js"></script>
+    <script type="text/javascript" src="plugins/layui/layui.js"></script>
+    <script type="text/javascript" src="js/modernizr.js"></script>
+    <script type="text/javascript" src="js/velocity.min.js"></script>
+    <script type="text/javascript" src="js/main.js"></script>
+</head>
+
+<body>
+    <div class="cd-side-navigation">
+        <div class="cd-side-navigation-group">
+            <div class="cd-navigation-node">
+                <img src="images/device1.png" class="setting-node" id="btn_setting" title="端口设置">
+            </div>
+            <ul>
+                <li class="selected" data-menu="index">
+                    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="24px" height="24px"
+                        viewBox="0 0 1000 1000" enable-background="new 0 0 1000 1000">
+                        <g>
+                            <path d="M867.5,867.5h-735C64.9,867.5,10,812.6,10,745V255c0-67.6,54.9-122.5,122.5-122.5h735c67.6,0,122.5,54.9,122.5,122.5v490C990,812.6,935.1,867.5,867.5,867.5z M867.5,316.3c0-33.8-27.4-61.3-61.3-61.3H193.8c-33.9,0-61.3,27.4-61.3,61.3v61.3h735V316.3z M867.5,500h-735v183.8c0,33.8,27.4,61.3,61.3,61.3h612.5c33.9,0,61.3-27.4,61.3-61.3V500z M377.5,683.8H255c-33.9,0-61.3-27.4-61.3-61.3c0-33.9,27.4-61.3,61.3-61.3h122.5c33.8,0,61.3,27.4,61.3,61.3S411.3,683.8,377.5,683.8z"></path>
+                        </g>
+                    </svg>
+                    <span>卡片管理</span>
+                    <div class="cd-side-navigation-node"></div>
+                </li>
+
+                <li data-menu="password">
+                    <svg class="nc-icon outline" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                        width="24px" height="24px" viewBox="0 0 1000 1000" enable-background="new 0 0 1000 1000">
+                        <g transform="translate(0, 0)">
+                            <path d="M10,241.2v517.6h980V241.2H10z M315.9,548.6c6.6,7.6,12,13.9,15.8,18.5l-42.7,28.1l-37.3-61.7c-11.2,20.2-24.3,41.4-39,64.2L170.6,565c13.6-15,27.5-29.2,42.1-43.1c5.7-5.4,9.5-9.2,10.9-10.5c-4.6-0.9-17.9-3.9-40-9.4c-15.9-4.1-26.4-6.7-31.4-8.7l17-49.2c24.4,9.9,46,21,64.8,32.7c-4.4-30.5-6.6-55.3-6.6-74.5h49.1c0,13.6-2.5,38.5-7.5,74.8c3.8-1.5,11.7-5,24-10.9c16.7-7.6,32.1-14.1,46.3-19.4l14.8,50.7c-20.7,4.6-44.6,9.2-71.8,13.6L315.9,548.6z M562.7,548.7c6.8,7.6,12,13.7,15.9,18.5l-42.7,28.1l-37.4-61.8c-11.4,20.2-24.5,41.4-39.1,64.1l-41.9-32.6c13.5-15,27.4-29.2,42-43.1c5.7-5.4,9.5-9.1,10.9-10.6c-4.6-0.8-18-3.9-40-9.4c-16-4-26.4-6.7-31.3-8.7l16.9-49.1c24.4,9.9,46,21,64.8,32.7c-4.4-30.5-6.5-55.3-6.5-74.5h49c0,13.5-2.5,38.5-7.5,74.8c3.7-1.5,11.7-5.1,24-10.9c16.7-7.6,32.1-14.1,46.3-19.5l14.8,50.8c-20.6,4.6-44.6,9.2-71.7,13.6L562.7,548.7z M809.5,548.7c6.6,7.6,12,13.7,15.8,18.5l-42.7,28.1l-37.3-61.8c-11.4,20.2-24.3,41.4-39.1,64.1l-42-32.6c13.3-15,27.3-29.2,42-43.1c5.8-5.4,9.6-9.1,11-10.5c-4.6-0.9-18.1-3.9-40-9.4c-15.8-4.1-26.3-6.8-31.3-8.7l17-49.1c24.3,9.9,46,21,64.8,32.7c-4.4-30.5-6.5-55.3-6.5-74.5h49c0,13.5-2.6,38.5-7.6,74.8c3.8-1.5,11.6-5.1,23.9-10.9c16.7-7.6,32.2-14.1,46.3-19.5l14.9,50.8c-20.5,4.5-44.7,9.2-71.8,13.6L809.5,548.7z"></path>
+                        </g>
+                    </svg>
+                    <span>加密管理</span>
+                    <div class="cd-side-navigation-node"></div>
+                </li>
+
+                <li data-menu="config">
+                    <svg class="nc-icon outline" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                        width="24px" height="24px" viewBox="0 0 1000 1000" enable-background="new 0 0 1000 1000">
+                        <g transform="translate(0, 0)">
+                            <path d="M916.8,797.4c-1.8-1.4-3.9-2.8-6.4-4.2c-10.6-3.9-19.2-10.4-25.8-19.4c-6.5-9-9.8-19.6-9.8-31.7c0-12.4,3.9-23.5,11.7-33.2c7.8-9.7,17.2-16.6,28.2-20.5c2.9-1.1,5.6-3.3,8.3-6.6c2.6-3.4,3.6-8.1,2.9-14.1c-1.4-10.3-4.1-20.5-8.2-30.6c-4.1-10.1-8.8-17.7-14.1-22.6c-2.9-2.8-6.3-4.4-10.4-4.8c-4.1-0.4-7.6,0.3-10.4,2.1c-10.6,5-22.2,7-34.6,6.1c-12.4-0.9-22.9-5.6-31.4-14.1c-8.5-8.5-13.6-18.5-15.4-29.8c-1.7-11.4-0.3-22.2,4.3-32.5c0.7-1.4,1.4-3.8,2.1-7.2c0.7-3.4,0.2-6.5-1.6-9.3c-2.9-4.6-6.6-8.9-11.5-12.8c-4.7-3.9-10-7.1-15.7-9.6c-5.6-2.5-11.4-4.5-17.3-5.9c-5.9-1.4-11.3-2.1-16.2-2.1c-3.2,0-6.3,1.5-9.3,4.5c-3,3-5.2,5.9-6.6,8.8c-3.9,10.6-10.6,19.4-20.2,26.3c-9.6,6.9-20.6,10.4-33,10.4c-12,0-22.5-3.7-31.4-10.9c-8.9-7.3-15.3-15.7-19.2-25.3c-1.1-3.2-2.9-6.3-5.6-9.3c-2.7-3-6.3-4.5-10.9-4.5c-3.5,0-8.3,0.6-14.4,1.9c-6,1.3-12.2,3.1-18.6,5.6c-6.4,2.5-12.3,5.6-17.8,9.3c-5.5,3.7-9.3,8.1-11.5,13c-1,2.1-1.3,4.6-0.8,7.5c0.5,2.8,1.2,5.3,1.9,7.5c0.3,2.1,0.8,5.6,1.3,10.6c0.6,5,0.6,10.5,0,16.5c-0.5,6-1.8,12.1-3.7,18.4c-2,6.2-5.1,11.4-9.3,15.7c-8.9,8.5-19.1,13.5-30.6,15.1c-11.5,1.6-22.6,0.3-33.3-4c-3.2-1.1-6.1-1.8-8.8-2.1c-2.7-0.3-5.4,0.3-8.3,2.1c-3.5,2.1-6.8,5.4-9.8,9.8c-3,4.5-5.7,9.3-8,14.6c-2.3,5.3-4.2,10.8-5.6,16.5c-1.4,5.7-2.1,10.8-2.1,15.4c0,4.2,1.1,8.4,3.2,12.5c2.1,4.1,4.8,6.6,7.9,7.6c10.6,4.3,20.2,11,28.7,20.2c8.5,9.2,12.8,20.1,12.8,32.5c0,12.1-4.2,23-12.8,32.7c-8.5,9.8-18.1,16.8-28.7,21c-6.1,2.1-9.6,7.1-10.6,14.9c-0.7,4.3-0.3,9.7,1.1,16.2c1.4,6.6,3.5,13,6.1,19.2c2.7,6.2,5.7,11.9,9,17c3.4,5.1,7,8.4,10.9,9.8c5,2.1,10,2.5,14.9,1.1c7.8-2.5,15.4-3.9,22.9-4.3c6.4-0.3,13.1,0.3,20.2,1.9c7.1,1.6,13.1,5,18.1,10.4c8.2,8.9,12.7,18.5,13.6,29c0.9,10.5-0.6,19.8-4.5,28c-2.8,6-4.2,10.7-4,14.1c0.2,3.3,1.2,6.3,2.9,8.8c2.5,3.5,6.2,7.1,11.2,10.6c5,3.6,10.5,6.7,16.8,9.3c6.2,2.7,12.4,4.9,18.6,6.6c6.2,1.8,11.8,2.7,16.8,2.7c4.3,0,8.2-1,11.7-2.9c3.6-2,6.2-5.1,8-9.3c3.9-10.6,10.7-19.9,20.5-27.9c9.7-8,20.7-12,32.7-12c12.5,0,23.3,4,32.7,12c9.4,8,16,17.4,19.9,28.5h0.5c1.1,2.8,3.1,5.5,5.9,8c2.9,2.5,5.8,3.7,9,3.7c4.7,0,10-0.7,16-2.1c6.1-1.4,11.9-3.4,17.3-5.9c5.5-2.5,10.5-5.2,15.2-8.3c4.6-3,8-5.9,10.1-8.8c4.6-7.1,5.1-14.2,1.6-21.3c-4.6-10.3-6.2-21.1-4.8-32.5c1.4-11.4,6.4-21.5,15-30.3c3.8-4.2,8.6-7.3,14.1-9.1c5.5-1.7,11-2.9,16.4-3.4c5.5-0.5,10.9-0.3,16.3,0.5c5.3,0.9,9.8,1.9,13.3,2.9c3.9,1.4,7.4,2.1,10.6,2.1c3.2,0,6.9-1.1,11.2-3.2c4.2-2.1,8.2-5.6,11.7-10.6c3.5-5,6.5-10.5,9-16.8c2.5-6.2,4.3-12.3,5.3-18.4c1.1-6,1.3-11.1,0.6-15.4C923.4,804.7,920.7,800.6,916.8,797.4L916.8,797.4z M784.4,786.5c-6,14-14.3,26.3-24.8,37c-10.5,10.6-22.8,19-37,25c-14.1,6-29.2,9.1-45.2,9.1c-15.9,0-30.9-3-44.9-9.1c-14-6.1-26.2-14.4-36.7-25c-10.5-10.7-18.7-23-24.8-37c-6-14-9.1-29-9.1-44.9c0-15.9,3-31,9.1-44.9c6-14,14.3-26.3,24.8-36.7c10.4-10.5,22.7-18.7,36.7-24.8c14-6,29-9,45-9c15.9,0,31.1,3,45.2,9c14.2,6,26.5,14.3,37,24.8c10.5,10.5,18.7,22.7,24.8,36.7c6,14,9,29,9,44.9C793.4,757.5,790.4,772.5,784.4,786.5L784.4,786.5z M430.5,753.5c0.7-1.1,1.4-2.2,1.9-3.3c0.2-0.5,0.4-1,0.5-1.5c0.4-1.5,0.8-3,1.1-4.5c0-0.2,0.1-0.4,0.1-0.6c0.1-1.4,0.2-2.8,0.2-4.2c0-1.5,0-3.1-0.2-4.6c0,0,0,0,0,0c-0.6-2.7-1.3-5.3-2.3-7.9c0,0,0,0,0-0.1c-0.1-0.2-0.2-0.4-0.3-0.7c-0.6-1.2-1.2-2.5-1.8-3.7c-1.3-2.5-2.7-4.9-4.1-7.3c-2.9-4.9-5.9-9.7-8.7-14.6c-7.1-12.7-12.9-26.5-13.4-41.3c-0.5-14.6,4.3-30.9,12.7-42.9c16.2-23.1,41.4-36.1,69-40.4c5.6-0.9,11.3-0.3,16,1.8c1.9-1,3.8-2.1,5.6-3.2c0.5-0.3,0.9-0.6,1.4-0.9c0,0,0,0,0.1-0.1c0.7-0.7,1.4-1.3,2.1-2.1c0.7-1.1,2-3,2.5-4c0.1-0.2,0.2-0.3,0.2-0.5c0,0,0,0,0,0c1.2-3.5,2.1-7.2,2.7-10.9c0.1-0.5,0.2-1.2,0.3-1.8c0.2-1.8,0.4-3.6,0.6-5.4c0.5-4.6,1-9.1,1.6-13.7c-0.2-6,0.2-12,1.4-18c3.2-15.5,13.6-29.3,27.3-37c0,0,0,0,0.1,0c2.8-5.3,7.5-9.4,13.6-10.4c6.3-1,12.6-2,18.9-2.6c1.1-0.6,2.3-1.1,3.6-1.5c16.7-5.7,35.5-1.6,47.4,11.8c3.8,4.3,7.2,8.9,10.3,13.7c5.9,3.7,11.2,8.1,16.3,12.7c1.4,0.8,2.9,1.6,4.4,2.3c0.7,0.3,1.4,0.7,2.1,1c1.4,0.5,2.8,1,4.2,1.4c1.5,0.4,6.6,1.2,6.4,1.3c1,0,2.1,0,3.1,0c1-0.2,2.1-0.5,3.1-0.8c0.6-0.2,1.7-0.6,2.4-1c0.4-0.2,0.7-0.4,1.1-0.6c2.3-1.3,4.6-2.7,6.8-4.3c0.5-0.3,1.4-1.1,2-1.5c0.5-0.4,1-0.8,1.5-1.3c2.5-2.1,5-4.3,7.4-6.5c8.9-8.4,19.2-16.2,30.6-21.1c14.5-6.2,28.6-9.5,44.5-6.9c6.5,1,12.3,3.4,17.5,6.7V271.1L506.2,10H163.9c-49.7,0-90.1,36.5-90.1,81.6v685.3c0,45.1,40.3,81.6,90.1,81.6H403c-3.6-12.2-5.9-24.9-5.8-37.6c0-15.9,3.1-34.5,12.9-47.6c4.4-6,9.1-10.2,14.9-14.8C426.9,757,428.8,755.4,430.5,753.5C430.5,753.5,430.5,753.5,430.5,753.5L430.5,753.5z M448.4,67.6c18.6,0,33.7,15.1,33.7,33.7c0,18.6-15.1,33.7-33.7,33.7s-33.7-15.1-33.7-33.7C414.7,82.7,429.8,67.6,448.4,67.6z M169.2,134.9c-18.6,0-33.7-15.1-33.7-33.7c0-18.6,15.1-33.7,33.7-33.7s33.7,15.1,33.7,33.7C202.9,119.9,187.8,134.9,169.2,134.9z M308.8,134.9c-18.6,0-33.7-15.1-33.7-33.7c0-18.6,15.1-33.7,33.7-33.7s33.7,15.1,33.7,33.7C342.5,119.9,327.4,134.9,308.8,134.9z"></path>
+                        </g>
+                    </svg>
+                    <span>硬件配置</span>
+                    <div class="cd-side-navigation-node"></div>
+
+                </li>
+
+                <li data-menu="test">
+                    <svg class="nc-icon outline" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                        width="24px" height="24px" viewBox="0 0 1000 1000" enable-background="new 0 0 1000 1000">
+                        <g transform="translate(0, 0)">
+                            <path d="M990,269.9L867.4,392.4c-202.9-203-532-203-734.9,0L10,269.9C280.6-0.7,719.3-0.7,990,269.9z M806.2,453.7L683.7,576.1c-101.4-101.5-265.9-101.5-367.4,0L193.8,453.7C362.9,284.5,637.1,284.5,806.2,453.7z M500,586.6c95.6,0,173.2,77.6,173.2,173.2S595.6,933.1,500,933.1s-173.2-77.6-173.2-173.2S404.4,586.6,500,586.6z"></path>
+                        </g>
+                    </svg>
+                    <span>无线管理</span>
+                    <div class="cd-side-navigation-node"></div>
+                </li>
+                <li data-menu="download">
+                    <svg class="nc-icon outline" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                        width="24px" height="24px" viewBox="0 0 1000 1000" enable-background="new 0 0 1000 1000">
+                        <g>
+                            <path d="M153.9,8.3H95.5l-75,70l39.2,41.9c15.4-13.6,24.6-23.5,27.6-29.8h1.1v6.6c0,14.7-0.1,36.9-0.3,66.7c-0.2,29.8-0.3,52.2-0.3,67.3h-59v54.6h184.8v-54.6h-59.6V8.3z"></path>
+                            <path d="M984.8,149.8c-3.5-3.5-7.6-5.2-12.4-5.2H301.7c-4.8,0-8.9,1.7-12.4,5.2c-3.5,3.5-5.2,7.6-5.2,12.4v105.9c0,4.8,1.7,8.9,5.2,12.4c3.5,3.5,7.6,5.2,12.4,5.2h670.6c4.8,0,8.9-1.7,12.4-5.2c3.5-3.5,5.2-7.6,5.2-12.4V162.2C990,157.4,988.3,153.3,984.8,149.8z"></path>
+                            <path d="M150.6,821.2l52.4-63.4v-48.5H19.4v83.8h58.5v-29.2c5.9,0,14.8-0.2,26.8-0.5c11.9-0.4,20.9-0.6,26.7-0.6v0.6c-7,6.6-13.8,13.7-20.4,21.2S96.5,802,87.5,814.4c-9,12.3-15,20.3-17.9,24l14.3,30.9c38.6-3,57.9,7.3,57.9,30.9c0,10.3-4,18.1-11.9,23.4c-7.9,5.3-17.2,8-27.8,8c-21,0-40.4-8.3-58.5-24.8l-31.4,48.5c24.3,24.3,55.9,36.4,94.9,36.4c29.8,0,54.7-8.4,74.7-25.4c20-16.9,30.1-40.1,30.1-69.5c0-18.8-5.5-34.9-16.5-48.5C184.3,834.7,169.4,825.7,150.6,821.2z"></path>
+                            <path d="M155,584.1H85c0.4-9.2,6.9-18.8,19.6-28.9c12.7-10.1,26.6-19.4,41.6-27.9c15.1-8.5,28.9-20.3,41.4-35.6c12.5-15.3,18.8-32.1,18.8-50.5c0-26.1-9.2-46.8-27.6-62c-18.4-15.3-41-22.9-67.8-22.9c-21.3,0-40.7,5.2-58.2,15.7c-17.5,10.5-30.6,25.1-39.4,43.9l46.9,32.5c12.9-21.3,27.8-32,44.7-32c9.2,0,16.5,2.5,21.8,7.4c5.3,5,8,12,8,21.2c0,8.5-4.3,16.7-13,24.8c-8.6,8.1-19,16.1-31.2,24c-12.1,7.9-24.3,16.6-36.4,26.2C42,529.7,31.6,542.2,23,557.6c-8.6,15.4-13,32.5-13,51.3c0,6.6,1.1,16.5,3.3,29.8h199.6V551v0H155V584.1z"></path>
+                            <path d="M972.4,709.3H301.7c-5.1,0-9.4,1.7-12.7,5c-3.3,3.3-5,7.5-5,12.7v105.9c0,4.8,1.7,8.9,5.2,12.4c3.5,3.5,7.6,5.2,12.4,5.2h670.6c4.8,0,8.9-1.7,12.4-5.2c3.5-3.5,5.2-7.6,5.2-12.4V726.9c0-4.8-1.7-8.9-5.2-12.4C981.3,711,977.1,709.3,972.4,709.3z"></path>
+                            <path d="M972.4,426.9H301.7c-5.1,0-9.4,1.7-12.7,5c-3.3,3.3-5,7.5-5,12.7v105.9c0,4.8,1.7,8.9,5.2,12.4c3.5,3.5,7.6,5.2,12.4,5.2h670.6c4.8,0,8.9-1.7,12.4-5.2c3.5-3.5,5.2-7.6,5.2-12.4V444.6c0-4.8-1.7-8.9-5.2-12.4C981.3,428.7,977.1,426.9,972.4,426.9z"></path>
+                        </g>
+                    </svg>
+                    <span>编号下载</span>
+                    <div class="cd-side-navigation-node"></div>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="cd-main">
+        <div class="cd-section index visible">
+            <div class="cd-header">
+                <div class="layui-btn-group">
+                    <buton id="btn_refresh" class="layui-btn layui-btn-normal layui-btn-disabled" disabled>刷新</buton>
+                    <buton id="btn_issue" class="layui-btn layui-btn-normal layui-btn-disabled" disabled>发行</buton>
+                    <buton id="btn_batch" class="layui-btn layui-btn-normal layui-btn-disabled" disabled>批量</buton>
+                    <buton id="btn_personnel_issue" class="layui-btn layui-btn-normal layui-btn-disabled" disabled>发行（人员通道）</buton>
+                    <buton id="btn_personnel_batch" class="layui-btn layui-btn-normal layui-btn-disabled" disabled>批量（人员通道）</buton>
+                    <buton id="btn_report_relieve" class="layui-btn layui-btn-normal layui-btn-disabled" disabled>挂失|解挂</buton>
+                </div>
+            </div>
+            <div class="cd-content" id="menu-container">
+                <table class="layui-table">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th style="min-width: 50px">状态</th>
+                            <th style="min-width: 100px">卡片编号</th>
+                            <th style="min-width: 100px">卡片类型</th>
+                            <th style="min-width: 150px">有效期限</th>
+                            <th style="min-width: 100px">距离</th>
+                            <th style="min-width: 100px">解锁状态</th>
+                            <th style="min-width: 100px">挂失状态</th>
+                            <th style="min-width: 100px">车位限制</th>
+                            <th style="min-width: 200px">车场分区</th>
+                            <th style="min-width: 100px">电量状态</th>
+                        </tr>
+                    </thead>
+                    <tbody id="card_manager_table_tbody">
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="cd-section password">
+            <div id="passwordgroup" class="left-container">
+                <div class="device">
+                    <div class="layui-card">
+                        <div class="layui-card-header">定距加密</div>
+                        <div class="layui-card-body">
+                            <form class="layui-form layui-form-pane" lay-filter="distanceform">
+                                <div id="distanceoldpwdgroup" class="layui-form-item">
+                                    <label class="layui-form-label">旧密码</label>
+                                    <div class="layui-input-inline">
+                                        <input type="text" name="oldpwd" maxlength="6" required lay-verify="len6" class="layui-input" id="distance_old_pwd">
+                                    </div>
+                                    <input type="checkbox" lay-filter="distance_default_old_pwd" title="默认" id="distance_default_old_pwd">
+                                </div>
+                                <div class="layui-form-item">
+                                    <label class="layui-form-label">新密码</label>
+                                    <div class="layui-input-inline">
+                                        <input type="text" name="pwd" maxlength="6" required lay-verify="len6" class="layui-input" id="distance_pwd">
+                                    </div>
+                                    <input type="checkbox" lay-filter="distance_default_pwd" id="distance_default_pwd" title="默认">
+                                </div>
+                                <div class="layui-form-item">
+                                    <label class="layui-form-label">确认密码</label>
+                                    <div class="layui-input-inline">
+                                        <input type="text" name="confirmpwd" maxlength="6" required lay-verify="len6" class="layui-input" id="distance_confirm_pwd">
+                                    </div>
+                                </div>
+                                <div class="layui-form-item">
+                                    <label class="layui-form-label">客户编号</label>
+                                    <div class="layui-input-inline">
+                                        <input type="text" name="clientnumber" maxlength="4" required lay-verify="len4|number" class="layui-input" id="distance_client_number">
+                                    </div>
+                                    <input type="checkbox" lay-filter="distance_default_number" title="默认" id="distance_default_number">
+                                </div>
+                                <div class="layui-form-item" pane="">
+                                    <label class="layui-form-label">加密对象</label>
+                                    <div class="layui-input-block">
+                                        <input type="radio" name="distance" value="0" lay-filter="distance" id="distance_card" title="定距卡" checked="">
+                                        <input type="radio" name="distance" value="1" lay-filter="distance" id="distance_device" title="发行器">
+                                    </div>
+                                </div>
+                                <div class="layui-form-item">
+                                    <button class="layui-btn layui-btn-normal layui-btn-fluid layui-btn-disabled" lay-submit="" lay-filter="btn_distance_enter"
+                                        id="btn_distance_encrypt" disabled>确 认</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+
+                    <div class="fixed-footer">
+                        <div class="site-nav">
+                            <span>IC 加密</span>
+                            <i class="layui-icon layui-icon-up"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="device">
+                    <div>
+                        <div class="site-nav">
+                            <span>定距加密</span>
+                            <i class="layui-icon layui-icon-down"></i>
+                        </div>
+                    </div>
+                    <div class="layui-card">
+                        <div class="layui-card-header">IC 加密</div>
+                        <div class="layui-card-body">
+                            <form class="layui-form layui-form-pane" lay-filter="icform">
+                                <div class="layui-form-item" id="icoldpwdgroup">
+                                    <label class="layui-form-label">旧密码</label>
+                                    <div class="layui-input-inline">
+                                        <input type="text" name="oldpwd" maxlength="8" required lay-verify="len8" class="layui-input" id="ic_old_pwd">
+                                    </div>
+                                    <input type="checkbox" title="默认" lay-filter="ic_default_old_pwd" id="ic_default_old_pwd">
+                                </div>
+                                <div class="layui-form-item">
+                                    <label class="layui-form-label">新密码</label>
+                                    <div class="layui-input-inline">
+                                        <input type="text" name="pwd" maxlength="8" required lay-verify="len8" class="layui-input" id="ic_pwd">
+                                    </div>
+                                    <input type="checkbox" title="默认" lay-filter="ic_default_pwd" id="ic_default_pwd">
+                                </div>
+                                <div class="layui-form-item">
+                                    <label class="layui-form-label">确认密码</label>
+                                    <div class="layui-input-inline">
+                                        <input type="text" name="confirmpwd" maxlength="8" required lay-verify="len8" class="layui-input" id="ic_confirm_pwd">
+                                    </div>
+                                </div>
+                                <div class="layui-form-item" pane="">
+                                    <label class="layui-form-label">加密对象</label>
+                                    <div class="layui-input-block">
+                                        <input type="radio" name="ic" value="0" lay-filter="ic" id="ic_card" title="IC 卡" checked="">
+                                        <input type="radio" name="ic" value="1" lay-filter="ic" id="ic_device" title="IC 模块">
+                                    </div>
+                                </div>
+                                <div class="layui-form-item">
+                                    <button class="layui-btn layui-btn-normal layui-btn-fluid layui-btn-disabled" lay-submit="" lay-filter="btn_ic_enter" id="btn_ic_encrypt"
+                                        disabled>确 认</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="right-container">
+                <div class="news-list" id="password_news">
+                    <!-- <div class="news-container">
+                        <span>adfasdf</span>
+                        <i>2018-008-10</i>
+                    </div> -->
+                </div>
+                <div class="list-clear-container">
+                    <button class="layui-btn layui-btn-danger layui-btn-sm" id="btn_clear_pwd_list" title="清除列表">
+                        <i class="fa fa-close"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div class="cd-section config">
+            <div class="cd-header">
+                <div class="layui-btn-group">
+                    <buton id="btn_config_show" class="layui-btn layui-btn-normal">显示</buton>
+                    <buton id="btn_config_add" class="layui-btn layui-btn-normal">添加</buton>
+                    <!-- <buton id="btn_config_edit" class="layui-btn layui-btn-normal">编辑</buton>
+                    <buton id="btn_config_del" class="layui-btn layui-btn-normal">删除</buton> -->
+                    <buton id="btn_config_export" class="layui-btn layui-btn-normal layui-btn-disabled" disabled>导出</buton>
+                </div>
+            </div>
+            <div class="cd-content  cd-content-pager">
+                <table id="configtable" lay-filter="configtable"></table>
+                <script type="text/html" id="barconfig">
+                    <a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
+                    <a class="layui-btn layui-btn-xs layui-btn-danger" lay-event="del">删除</a>
+                </script>
+            </div>
+            <div class="cd-footer" id="configpager">
+
+            </div>
+        </div>
+        <div class="cd-section test">
+            <div class="left-container">
+                <div class="device" id="wireless_container">
+                    <div class="layui-card">
+                        <div class="layui-card-header">无线设置</div>
+                        <div class="layui-card-body">
+                            <form action="" class="layui-form layui-form-pane">
+                                <div class="layui-form-item">
+                                    <label for="" class="layui-form-label">无线ID</label>
+                                    <div class="layui-input-block">
+                                        <input type="text" class="layui-input" required lay-verify="number" lay-filter="wirelessID" id="wireless_id" maxlength="8"
+                                            value="1">
+                                    </div>
+                                </div>
+                                <div class="layui-form-item">
+                                    <label for="" class="layui-form-label">无线频率</label>
+                                    <div class="layui-input-block">
+                                        <input type="text" class="layui-input" required lay-verify="number" lay-filter="radiofrequency" id="radio_frequency" maxlength="2"
+                                            value="1">
+                                    </div>
+                                </div>
+                                <button class="layui-btn layui-btn-normal layui-btn-fluid layui-btn-disabled" lay-submit="" lay-filter="btn_Wireless_setup"
+                                    id="btn_Wireless_setup" disabled>设置</button>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="layui-card">
+                        <div class="layui-card-header">其它操作</div>
+                        <div class="layui-card-body">
+                            <div class="layui-form-item">
+                                <button class="layui-btn layui-btn-normal layui-btn-fluid layui-btn-disabled" id="btn_wireless_search" disabled>搜索</button>
+                            </div>
+                            <div class="layui-form-item">
+                                <button class="layui-btn layui-btn-normal layui-btn-fluid layui-btn-disabled" id="btn_wireless_test" disabled>测试无线</button>
+                            </div>
+                            <div class="layui-form-item">
+                                <button class="layui-btn layui-btn-normal layui-btn-fluid layui-btn-disabled" id="btn_wireless_query" disabled>查询无线ID</button>
+                            </div>
+                            <div class="layui-form-item">
+                                <button class="layui-btn layui-btn-normal layui-btn-fluid layui-btn-disabled" id="btn_refresh_ic" disabled>刷IC卡</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="right-container">
+                <div class="news-list" id="wireless_news">
+                    <!-- <div class="news-container">
+                        <span>adfasdf</span>
+                        <i>2018-008-10</i>
+                    </div> -->
+                </div>
+                <div class="list-clear-container">
+                    <button class="layui-btn layui-btn-danger layui-btn-sm" id="btn_clear_wireless_list" title="清除列表">
+                        <i class="fa fa-close"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div class="cd-section download">
+            <div class="cd-header">
+                <div class="layui-btn-group">
+                    <button id="btn_download_number" class="layui-btn layui-btn-normal layui-btn-disabled" disabled>下载编号</button>
+                    <button id="btn_download_time" class="layui-btn layui-btn-normal layui-btn-disabled" disabled>下载时间</button>
+                    <button id="btn_download_pwd" class="layui-btn layui-btn-normal layui-btn-disabled" disabled>下载密码</button>
+                    <button id="btn_download_show" class="layui-btn layui-btn-normal">显示</button>
+                    <button id="btn_add_ustomer_info" class="layui-btn layui-btn-normal">添加</button>
+                    <buton id="btn_edit_ustomer_info" class="layui-btn layui-btn-normal layui-btn-disabled" disabled>编辑</buton>
+                    <buton id="btn_del_ustomer_info" class="layui-btn layui-btn-normal layui-btn-disabled" disabled>删除</buton>
+                    <button id="btn_limit_number" class="layui-btn layui-btn-normal">限制</button>
+                    <buton id="btn_create_config" class="layui-btn layui-btn-normal layui-btn-disabled" disabled>生成配置</buton>
+                </div>
+                <div class="layui-search">
+                    <input type="text" id="search_customer" class="layui-input layui-input-search" placeholder="搜索">
+                    <i class="fa fa-search" id="btn_customer_search"></i>
+                </div>
+            </div>
+            <div class="cd-content cd-content-pager">
+                <table class="layui-table" id="download_table" lay-filter="donwloadtable">
+                    <thead>
+                        <tr>
+                            <td style="width:100px">#</td>
+                            <td style="width:100px">编号</td>
+                            <td>客户名称</td>
+                            <td style="width:100px">客户编号</td>
+                            <td>说明</td>
+                            <td style="width:150px">记录时间</td>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+            <div class="cd-footer" id="downloadpager">
+
+            </div>
+        </div>
+    </div>
+    <div id="cd-loading-bar" data-scale="1" class="index"></div>
+</body>
+
+
+<div id="setting" class="dialog-body">
+    <form action="" class="layui-form" lay-filter="settingform">
+        <div class="layui-form-item"></div>
+        <div class="layui-form-item">
+            <label for="" class="layui-form-label">连接方式</label>
+            <div class="layui-input-block">
+                <select name="" id="connection_mode" lay-filter="connectionmode">
+                    <option value="0">自动连接</option>
+                    <option value="1">手动连接</option>
+                </select>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <div class="layui-row">
+                <div class="layui-col-xs9">
+                    <img src="images/device1.png" alt="" class="port-img">
+                    <div class="layui-input-block">
+                        <select name="Device1" id="select_Device1" disabled>
+                            <option value="COM 1">COM 1</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="layui-col-xs3">
+                    <button id="btn_Device" class="layui-btn layui-btn-primary layui-btn-fluid layui-btn-disabled" lay-submit="" lay-filter="btn_Device"
+                        target="select_Device1" disabled>打开</button>
+                </div>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <div class="layui-row">
+                <div class="layui-col-xs9">
+                    <img src="images/device2.png" alt="" class="port-img">
+                    <div class="layui-input-block">
+                        <select name="Device2" id="select_Device2" disabled>
+                            <option value="com1">Com 1</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="layui-col-xs3">
+                    <button id="btn_Device" class="layui-btn layui-btn-primary layui-btn-fluid layui-btn-disabled" lay-submit="" lay-filter="btn_Device"
+                        target="select_Device2" disabled>打开</button>
+                </div>
+            </div>
+        </div>
+        <div class="layui-form-item"></div>
+    </form>
+</div>
+
+<div id="issue" class="dialog-body">
+    <form action="" class="layui-form layui-form-pane" lay-filter="issueform">
+        <div class="layui-row">
+            <div class="layui-form-item"></div>
+        </div>
+        <div class="layui-row">
+            <div class="layui-col-md6">
+                <div class="layui-form-item">
+                    <label for="" class="layui-form-label">卡片编号</label>
+                    <div class="layui-input-block">
+                        <input type="text" name="number" class="layui-input" id="issue_number" disabled>
+                    </div>
+                </div>
+            </div>
+            <div class="layui-col-md6">
+                <div class="layui-form-item">
+                    <label for="" class="layui-form-label">有效期限</label>
+                    <div class="layui-input-block">
+                        <input type="text" name="date" id="issue_date" lay-verify="date" placeholder="yyyy-MM-dd" autocomplete="off" class="layui-input">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="layui-row">
+            <div class="layui-col-md6">
+                <div class="layui-form-item">
+                    <label class="layui-form-label">卡片距离</label>
+                    <div class="layui-input-block">
+                        <select name="distance" lay-filter="" id="issue_distance">
+                            <option value="0">主机控制</option>
+                            <option value="1">1.2 米</option>
+                            <option value="2">2.5 米</option>
+                            <option value="3">3.8 米</option>
+                            <option value="4">5 米</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="layui-col-md6">
+                <div class="layui-form-item">
+                    <label class="layui-form-label">车位限制</label>
+                    <div class="layui-input-block">
+                        <select name="limit" lay-filter="" id="issue_limit" disabled>
+                            <option value="0">关闭</option>
+                            <option value="1">开启</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="layui-row">
+            <div class="layui-form-item">
+                <label class="layui-form-label">卡片类型</label>
+                <div class="layui-input-block">
+                    <select name="type" lay-filter="issuetype" id="issue_type">
+                        <option value="0">单卡</option>
+                        <option value="1">人卡 (组合卡)</option>
+                        <option value="2">车牌识别卡</option>
+                    </select>
+                </div>
+                <div id="vicegroup" class="layui-form-item" style="display: none">
+                    <table class="layui-table" lay-filter="vicetable" id="vicetable"></table>
+                    <!-- <table class="layui-table">
+                            <thead>
+                                <tr>
+                                    <th style="min-width: 100px">卡号或车牌号</th>
+                                    <th style="min-width: 120px">时间</th>
+                                    <th style="min-width: 200px">车场分区</th>
+                                    <th style="min-width: 90px">操作</th>
+                                </tr>
+                            </thead>
+                            <tbody id="vice_card_table_tbody">
+                                <tr>
+                                    <td>123</td>
+                                    <td>123</td>
+                                    <td>123</td>
+                                    <td>
+                                        <a class="layui-btn layui-btn-xs" lay-filter="viceedit">编辑</a>
+                                        <a class="layui-btn layui-btn-danger layui-btn-xs" lay-filter="vicedel">删除</a>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table> -->
+                    <script type="text/html" id="barvicetable">
+                        <a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
+                        <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
+                    </script>
+                    <div class="vice-add-group">
+                        <button class="layui-btn" lay-submit="" lay-filter="viceadd">添加</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="partition_group" class="layui-form-item">
+            <label class="layui-form-label">车场分区</label>
+            <div class="layui-input-block">
+                <select name="partition" xm-select="select1">
+                    <option value="1">分区 1</option>
+                    <option value="2">分区 2</option>
+                    <option value="3">分区 3</option>
+                    <option value="4">分区 4</option>
+                    <option value="5">分区 5</option>
+                    <option value="6">分区 6</option>
+                    <option value="7">分区 7</option>
+                    <option value="8">分区 8</option>
+                    <option value="9">分区 9</option>
+                    <option value="10">分区 10</option>
+                    <option value="11">分区 11</option>
+                    <option value="12">分区 12</option>
+                    <option value="13">分区 13</option>
+                    <option value="14">分区 14</option>
+                    <option value="15">分区 15</option>
+                    <option value="16">分区 16</option>
+                </select>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <div class="layui-row">
+                <div class="layui-col-md2 layui-col-md-offset10">
+                    <button class="layui-btn layui-btn-normal layui-btn-fluid" lay-submit="" lay-filter="btn_issue_enter">确认</button>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+
+<div id="vice" class="dialog-body">
+    <form action="" class="layui-form" lay-filter="viceform">
+        <div class="layui-row">
+            <div class="layui-form-item">
+                <div class="layui-input-block layui-hide">
+                    <input type="hidden" name="index" class="layui-input">
+                </div>
+            </div>
+        </div>
+        <div class="layui-form-item" id="licenseplategroup">
+            <label for="" class="layui-form-label">车牌或内码</label>
+            <div class="layui-input-block">
+                <input type="text" class="layui-input" name="number" lay-filter="licenseplate" required placeholder="7或8位车牌号码" maxlength="10"
+                    id="vice_number">
+            </div>
+        </div>
+        <div class="layui-form-item" id="vicecardgroup">
+            <label for="" class="layui-form-label">选择副卡</label>
+            <div class="layui-input-block">
+                <select name="vicenumbers" xm-select="select2" xm-select-max="4" id="vice_card_list">
+                </select>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label for="" class="layui-form-label">有效期限</label>
+            <div class="layui-input-block">
+                <input type="text" name="date" id="vice_date" lay-verify="date" placeholder="yyyy-MM-dd" autocomplete="off" class="layui-input">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">车场分区</label>
+            <div class="layui-input-block">
+                <select name="partition" xm-select="select3">
+                    <option value="1">分区 1</option>
+                    <option value="2">分区 2</option>
+                    <option value="3">分区 3</option>
+                    <option value="4">分区 4</option>
+                    <option value="5">分区 5</option>
+                    <option value="6">分区 6</option>
+                    <option value="7">分区 7</option>
+                    <option value="8">分区 8</option>
+                    <option value="9">分区 9</option>
+                    <option value="10">分区 10</option>
+                    <option value="11">分区 11</option>
+                    <option value="12">分区 12</option>
+                    <option value="13">分区 13</option>
+                    <option value="14">分区 14</option>
+                    <option value="15">分区 15</option>
+                    <option value="16">分区 16</option>
+                </select>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <div class="layui-row">
+                <div class="layui-col-md2 layui-col-md-offset10">
+                    <button class="layui-btn layui-btn-normal layui-btn-fluid" lay-submit="" lay-filter="btn_vice_enter">确认</button>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+
+<div id="batch" class="dialog-body">
+    <form action="" class="layui-form layui-form-pane" lay-filter="batchform">
+        <div class="layui-form-item"></div>
+        <div class="layui-form-item">
+            <label for="" class="layui-form-label">有效期限</label>
+            <div class="layui-input-block">
+                <input type="text" name="date" id="batch_date" lay-verify="date" placeholder="yyyy-MM-dd" autocomplete="off" class="layui-input">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">卡片距离</label>
+            <div class="layui-input-block">
+                <select name="distance" lay-filter="" id="batch_distance">
+                    <option value="0">主机控制</option>
+                    <option value="1">1.2 米</option>
+                    <option value="2">2.5 米</option>
+                    <option value="3">3.8 米</option>
+                    <option value="4">5 米</option>
+                </select>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">车场分区</label>
+            <div class="layui-input-block">
+                <select name="partition" xm-select="select4">
+                    <option value="1">分区 1</option>
+                    <option value="2">分区 2</option>
+                    <option value="3">分区 3</option>
+                    <option value="4">分区 4</option>
+                    <option value="5">分区 5</option>
+                    <option value="6">分区 6</option>
+                    <option value="7">分区 7</option>
+                    <option value="8">分区 8</option>
+                    <option value="9">分区 9</option>
+                    <option value="10">分区 10</option>
+                    <option value="11">分区 11</option>
+                    <option value="12">分区 12</option>
+                    <option value="13">分区 13</option>
+                    <option value="14">分区 14</option>
+                    <option value="15">分区 15</option>
+                    <option value="16">分区 16</option>
+                </select>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <div class="layui-row">
+                <div class="layui-col-md2 layui-col-md-offset10">
+                    <button class="layui-btn layui-btn-normal layui-btn-fluid" lay-submit="" lay-filter="btn_batch_enter">确认</button>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+
+<div id="personnel" class="dialog-body">
+    <form action="" class="layui-form layui-form-pane" lay-filter="personnelform">
+        <div class="layui-row">
+            <div class="layui-form-item">
+                <div class="layui-input-block layui-hide">
+                    <input type="text" name="index" class="layui-input" id="personnel_index">
+                </div>
+            </div>
+        </div>
+        <div class="layui-row">
+            <div class="layui-form-item" id="perosnnel_number_group">
+                <label for="" class="layui-form-label">卡片编号</label>
+                <div class="layui-input-block">
+                    <input type="text" name="number" class="layui-input" id="personnel_number" disabled>
+                </div>
+            </div>
+        </div>
+        <div class="layui-row">
+            <div class="layui-form-item">
+                <label for="" class="layui-form-label">有效期限</label>
+                <div class="layui-input-block">
+                    <input type="text" name="date" id="personnel_date" lay-verify="date" placeholder="yyyy-MM-dd" autocomplete="off" class="layui-input">
+                </div>
+            </div>
+        </div>
+        <div class="layui-row">
+            <div class="layui-form-item">
+                <label class="layui-form-label">车场分区</label>
+                <div class="layui-input-block">
+                    <select name="partition" id="" xm-select="select5">
+                        <option value="1">分区 1</option>
+                        <option value="2">分区 2</option>
+                        <option value="3">分区 3</option>
+                        <option value="4">分区 4</option>
+                        <option value="5">分区 5</option>
+                        <option value="6">分区 6</option>
+                        <option value="7">分区 7</option>
+                        <option value="8">分区 8</option>
+                        <option value="9">分区 9</option>
+                        <option value="10">分区 10</option>
+                        <option value="11">分区 11</option>
+                        <option value="12">分区 12</option>
+                        <option value="13">分区 13</option>
+                        <option value="14">分区 14</option>
+                        <option value="15">分区 15</option>
+                        <option value="16">分区 16</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="layui-row">
+            <div class="layui-form-item">
+                <div class="layui-col-md2 layui-col-md-offset10">
+                    <button class="layui-btn layui-btn-normal layui-btn-fluid" lay-submit="" lay-filter="btn_personnel_enter">确认</button>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+
+<div id="config" class="dialog-body">
+    <form action="" class="layui-form layui-form-pane" lay-filter="configform">
+        <div class="layui-row">
+            <div class="layui-col-md6">
+                <div class="layui-form-item">
+                    <div class="layui-input-block layui-hide">
+                        <input type="text" name="Did" class="layui-input" value="0">
+                    </div>
+                </div>
+            </div>
+            <div class="layui-col-md6">
+                <div class="layui-input-block layui-hide">
+
+                </div>
+            </div>
+        </div>
+        <div class="layui-row">
+            <div class="layui-col-md6">
+                <div class="layui-form-item">
+                    <label for="" class="layui-form-label">主机编号</label>
+                    <div class="layui-input-block">
+                        <input type="text" name="HostNumber" required lay-filter="number" lay-verify="number|notnull" maxlength="3" class="layui-input"
+                            value="1">
+                    </div>
+                </div>
+            </div>
+            <div class="layui-col-md6">
+                <div class="layui-form-item">
+                    <label for="" class="layui-form-label">读卡距离</label>
+                    <div class="layui-input-block">
+                        <select name="CardReadDistance" lay-filter="devicedistance">
+                            <option value="0">主机控制</option>
+                            <option value="1">1.2 米</option>
+                            <option value="2">2.5 米</option>
+                            <option value="3">3.8 米</option>
+                            <option value="4">5 米</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="layui-row">
+            <div class="layui-col-md6">
+                <div class="layui-form-item">
+                    <label for="" class="layui-form-label">出入口</label>
+                    <div class="layui-input-block">
+                        <select name="IOMouth">
+                            <option value="0">入口</option>
+                            <option value="1">出口</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="layui-col-md6">
+                <div class="layui-form-item">
+                    <label for="" class="layui-form-label">开闸模式</label>
+                    <div class="layui-input-block">
+                        <select name="OpenModel" lay-filter="openingmode" id="openingmode">
+                            <option value="0">畅泊：串口开闸</option>
+                            <option value="1">畅泊：无线开闸</option>
+                            <option value="2">学习遥控器</option>
+                            <option value="3" selected>继电器开闸</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="layui-row">
+            <div class="layui-col-md6">
+                <div class="layui-form-item">
+                    <label for="" class="layui-form-label">车牌识别</label>
+                    <div class="layui-input-block">
+                        <select name="CameraDetection" lay-filter="licenseplaterecognition" id="licenseplaterecognition">
+                            <option value="0">关闭</option>
+                            <option value="1">开启</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="layui-col-md6">
+                <div class="layui-form-item">
+                    <label for="" class="layui-form-label">道闸 ID</label>
+                    <div class="layui-input-block">
+                        <input type="text" name="BrakeNumber" required lay-filter="number" lay-verify="notnull" maxlength="10" class="layui-input"
+                            id="road_gate_id" value="1" disabled>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="layui-row">
+            <div class="layui-col-md6">
+                <div class="layui-form-item">
+                    <label for="" class="layui-form-label">相机 ID</label>
+                    <div class="layui-input-block">
+                        <input type="text" name="WirelessNumber" required lay-filter="number" lay-verify="notnull" maxlength="10" class="layui-input"
+                            id="camera_id" value="1" disabled>
+                    </div>
+                </div>
+            </div>
+            <div class="layui-col-md6">
+                <div class="layui-form-item">
+                    <label for="" class="layui-form-label">读卡延迟</label>
+                    <div class="layui-input-block">
+                        <select name="ReadCardDelay">
+                            <option value="0">1 秒</option>
+                            <option value="1" selected>5 秒</option>
+                            <option value="2">10 秒</option>
+                            <option value="3">20 秒</option>
+                            <option value="4">40 秒</option>
+                            <option value="5">80 秒</option>
+                            <option value="6">160 秒</option>
+                            <option value="7">320 秒</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="layui-row">
+            <div class="layui-col-md6">
+                <div class="layui-form-item">
+                    <label for="" class="layui-form-label">频率偏移</label>
+                    <div class="layui-input-block">
+                        <input type="text" name="FrequencyOffset" required lay-filter="number" maxlength="10" class="layui-input" id="camera_frequency"
+                            value="1" disabled>
+                    </div>
+                </div>
+            </div>
+            <div class="layui-col-md6">
+                <div class="layui-form-item">
+                    <label for="" class="layui-form-label">离开检测</label>
+                    <div class="layui-input-block">
+                        <select name="Detection">
+                            <option value="0">关闭</option>
+                            <option value="1">开启</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="layui-row">
+            <div class="layui-col-md6">
+                <div class="layui-form-item">
+                    <label for="" class="layui-form-label">车场分区</label>
+                    <div class="layui-input-block">
+                        <select name="Partition">
+                            <option value="0">关闭</option>
+                            <option value="1">分区 1</option>
+                            <option value="2">分区 2</option>
+                            <option value="3">分区 3</option>
+                            <option value="4">分区 4</option>
+                            <option value="5">分区 5</option>
+                            <option value="6">分区 6</option>
+                            <option value="7">分区 7</option>
+                            <option value="8">分区 8</option>
+                            <option value="9">分区 9</option>
+                            <option value="10">分区 10</option>
+                            <option value="11">分区 11</option>
+                            <option value="12">分区 12</option>
+                            <option value="13">分区 13</option>
+                            <option value="14">分区 14</option>
+                            <option value="15">分区 15</option>
+                            <option value="16">分区 16</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="layui-col-md6">
+                <div class="layui-form-item">
+                    <label for="" class="layui-form-label">语言种类</label>
+                    <div class="layui-input-block">
+                        <select name="Language">
+                            <option value="0">普通话</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="layui-row">
+            <div class="layui-col-md6">
+                <div class="layui-form-item">
+                    <label for="" class="layui-form-label">防潜回</label>
+                    <div class="layui-input-block">
+                        <select name="SAPBF">
+                            <option value="0">关闭</option>
+                            <option value="1">开启</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="layui-col-md6">
+                <div class="layui-form-item">
+                    <label for="" class="layui-form-label">模糊查询</label>
+                    <div class="layui-input-block">
+                        <select name="FuzzyQuery">
+                            <option value="0">关闭</option>
+                            <option value="0">1</option>
+                            <option value="0">2</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <div class="layui-row">
+                <div class="layui-col-md2">
+                    <button class="layui-btn layui-hide" type="reset" id="btn_config_reset">重置</button>
+                </div>
+                <div class="layui-col-md2 layui-col-md-offset10">
+                    <button class="layui-btn layui-btn-normal layui-btn-fluid" lay-submit="" lay-filter="btn_config_enter">确认</button>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+
+<div id="export" class="dialog-body">
+    <form action="" class="layui-form layui-form-pane" lay-filter="exportform">
+        <div class="layui-form-item"></div>
+        <div class="layui-row">
+            <div class="layui-form-item">
+                <div class="layui-col-md6">
+                    <input type="checkbox" name="device" title="设置控制板密码（显示屏操作密码）" lay-skin="primary" lay-filter="enableddevicepwd">
+                </div>
+            </div>
+        </div>
+        <div class="layui-row" id="control_row" style="transform: translateX(100%);opacity: 0;">
+
+        </div>
+        <div class="layui-row">
+            <div class="layui-form-item">
+                <div class="layui-col-md6">
+                    <input type="checkbox" name="host" title="设置主机系统口令（定距卡密码）" lay-skin="primary" lay-filter="enabledhostpwd">
+                </div>
+            </div>
+        </div>
+        <div class="layui-row" id="host_row" style="transform: translateX(100%);opacity: 0;">
+
+        </div>
+        <div class="layui-row">
+            <div class="layui-form-item">
+                <div class="layui-col-md6">
+                    <input type="checkbox" name="ic" title="设置IC卡系统口令（出卡机密码）" lay-skin="primary" lay-filter="enabledicpwd">
+                </div>
+            </div>
+        </div>
+        <div class="layui-row" id="ic_row" style="transform: translateX(100%);opacity: 0;">
+
+        </div>
+        <div class="layui-form-item">
+            <div class="layui-row layui-col-space10">
+                <div class="layui-col-md10">
+                    <label for="" class="layui-form-label">导出目录</label>
+                    <div class="layui-input-block">
+                        <select name="Drives" id="Drives">
+                        </select>
+                    </div>
+                </div>
+                <div class="layui-col-md2">
+                    <button class="layui-btn layui-btn-normal layui-btn-fluid" lay-submit="" lay-filter="btn_export_enter">导出</button>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+
+<div id="info" class="dialog-body">
+    <form action="" class="layui-form layui-form-pane" lay-filter="infoform">
+        <div class="layui-form-item">
+            <div class="layui-input-block layui-hide">
+                <input type="text" name="Id" class="layui-input" value="0">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label for="" class="layui-form-label">客户名称
+                <span class="layui-badge-dot"></span>
+            </label>
+            <div class="layui-input-block">
+                <input type="text" name="UserName" class="layui-input" id="customer_name" lay-verify="notnull" lay-filter="customername"
+                    required maxlength="100">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label for="" class="layui-form-label">客户编号
+                <span class="layui-badge-dot"></span>
+            </label>
+            <div class="layui-input-block">
+                <input type="text" name="UserNumber" class="layui-input" id="customer_number" lay-verify="len4|number" lay-filter="customernumber"
+                    required maxlength="4">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label for="" class="layui-form-label">客户描述</label>
+            <div class="layui-input-block">
+                <input type="text" name="Description" class="layui-input" id="customer_describe" lay-filter="customerdescribe" required maxlength="100">
+            </div>
+        </div>
+        <!-- <div class="layui-form-item layui-hide">
+            <div class="layui-input-block">
+                <input type="text" name="RecordTime" id="customer_time" lay-verify="date" placeholder="yyyy-MM-dd HH:mm:ss" autocomplete="off" class="layui-input">
+            </div>
+        </div> -->
+        <div class="layui-form-item">
+            <div class="layui-row">
+                <div class="layui-col-md2 layui-hide">
+                    <button type="reset" class="layui-btn" id="btn_donwload_reset">重置</button>
+                </div>
+                <div class="layui-col-md2 layui-col-md-offset10">
+                    <button class="layui-btn layui-btn-normal layui-btn-fluid" lay-submit="" lay-filter="btn_info_enter">确认</button>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+
+<div id="limit" class="dialog-body">
+    <div class="layui-form-item"></div>
+    <table class="layui-table">
+        <thead>
+            <tr>
+                <th>限制客户编号</th>
+                <th align='center' style="width: 60px">操作</th>
+            </tr>
+        </thead>
+        <tbody id="limit_table_tbody">
+        </tbody>
+    </table>
+    <div class="layui-form-item"></div>
+</div>
+
+<div id="downloadpwd" class="dialog-body">
+    <form class="layui-form layui-form-pane">
+        <div class="layui-form-item"></div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">旧密码</label>
+            <div class="layui-input-inline">
+                <input type="text" name="oldpwd" class="layui-input" maxlength="6" required lay-verify="len6number|number" placeholder="6 位数字"
+                    id="personnel_old_pwd">
+            </div>
+            <input type="checkbox" title="默认" lay-skin="primary" lay-filter="default_personnel_old_pwd">
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">新密码</label>
+            <div class="layui-input-inline">
+                <input type="text" name="pwd" class="layui-input" maxlength="6" required lay-verify="len6number|number" placeholder="6 位数字"
+                    id="personnel_pwd">
+            </div>
+            <input type="checkbox" title="默认" lay-skin="primary" lay-filter="default_personnel_pwd">
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">确认密码</label>
+            <div class="layui-input-inline">
+                <input type="text" name="confirmpwd" class="layui-input" maxlength="6" required lay-verify="len6number|number" placeholder="6 位数字"
+                    id="personnel_confirm_pwd">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <button class="layui-btn layui-btn-normal layui-btn-fluid" lay-submit="" lay-filter="btn_down_pwd_enter">确认</button>
+        </div>
+    </form>
+</div>
+
+</html>
