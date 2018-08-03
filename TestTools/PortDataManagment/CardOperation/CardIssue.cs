@@ -56,7 +56,7 @@ namespace TestTools.PortDataManagment
         public void OverTime()
         {
             IssueInfo = null;
-            ViewCallFunction.ViewIssueOverTime();
+            ViewCallFunction.ViewCloseLoading();
         }
     }
 }

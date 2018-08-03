@@ -86,6 +86,7 @@
                 </li>
             </ul>
         </div>
+        <div id="cd-loading-bar" data-scale="1" class="index"></div>
     </div>
     <div class="cd-main">
         <div class="cd-section index visible">
@@ -96,7 +97,8 @@
                     <buton id="btn_batch" class="layui-btn layui-btn-normal layui-btn-disabled" disabled>批量</buton>
                     <buton id="btn_personnel_issue" class="layui-btn layui-btn-normal layui-btn-disabled" disabled>发行（人员通道）</buton>
                     <buton id="btn_personnel_batch" class="layui-btn layui-btn-normal layui-btn-disabled" disabled>批量（人员通道）</buton>
-                    <buton id="btn_report_relieve" class="layui-btn layui-btn-normal layui-btn-disabled" disabled>挂失|解挂</buton>
+                    <buton id="btn_lose" class="layui-btn layui-btn-normal layui-btn-disabled" disabled>挂失</buton>
+                    <button id="btn_recovery" class="layui-btn layui-btn-normal layui-btn-disabled" disabled>解挂</button>
                 </div>
             </div>
             <div class="cd-content" id="menu-container">
@@ -234,7 +236,7 @@
                     </div> -->
                 </div>
                 <div class="list-clear-container">
-                    <button class="layui-btn layui-btn-danger layui-btn-sm" id="btn_clear_pwd_list" title="清除列表">
+                    <button class="layui-btn layui-btn-danger layui-btn-sm layui-btn-radius" id="btn_clear_pwd_list" title="清除列表">
                         <i class="fa fa-close"></i>
                     </button>
                 </div>
@@ -314,7 +316,7 @@
                     </div> -->
                 </div>
                 <div class="list-clear-container">
-                    <button class="layui-btn layui-btn-danger layui-btn-sm" id="btn_clear_wireless_list" title="清除列表">
+                    <button class="layui-btn layui-btn-danger layui-btn-sm layui-btn-radius" id="btn_clear_wireless_list" title="清除列表">
                         <i class="fa fa-close"></i>
                     </button>
                 </div>
@@ -358,7 +360,7 @@
             </div>
         </div>
     </div>
-    <div id="cd-loading-bar" data-scale="1" class="index"></div>
+
 </body>
 
 
@@ -706,6 +708,47 @@
             <div class="layui-form-item">
                 <div class="layui-col-md2 layui-col-md-offset10">
                     <button class="layui-btn layui-btn-normal layui-btn-fluid" lay-submit="" lay-filter="btn_personnel_enter">确认</button>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+
+<div id="lose" class="dialog-body">
+    <form class="layui-form">
+        <div class="layui-form-item"></div>
+        <div class="layui-form-item">
+            <select name="" id="" xm-select="select6" xm-select-search="" xm-select-search-type="dl" xm-select-max="10" lay-verify="selectlen">
+                <option value="">请选择挂失的卡片编号（最多10张）</option>
+            </select>
+        </div>
+        <div class="layui-form-item">
+            <div class="layui-row  layui-col-space5">
+                <div class="layui-col-sm6">
+                    <button class="layui-btn layui-btn-normal layui-btn-fluid" lay-submit="" lay-filter="btn_distance_lose">定距卡挂失</button>
+                </div>
+                <div class="layui-col-sm6">
+                    <button class="layui-btn layui-btn-normal layui-btn-fluid" lay-submit="" lay-filter="btn_personnel_lose">人员通道挂失</button>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+
+<div id="recovery" class="dialog-body">
+    <form class="layui-form">
+        <div class="layui-form-item">
+            <div class="layui-elem-quote">定距卡重新发行即可解挂</div>
+        </div>
+        <div class="layui-form-item">
+            <select name="" id="" xm-select="select7" xm-select-search="" xm-select-search-type="dl" xm-select-max="10" lay-verify="selectlen">
+                <option value="">请选择解挂的卡片编号（最多10张）</option>
+            </select>
+        </div>
+        <div class="layui-form-item">
+            <div class="layui-row">
+                <div class="layui-col-sm6 layui-col-xs-offset6">
+                    <a class="layui-btn layui-btn-normal layui-btn-fluid" lay-submit="" lay-filter="btn_personnel_recovery">人员通道解挂</a>
                 </div>
             </div>
         </div>

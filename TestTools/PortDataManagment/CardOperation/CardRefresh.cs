@@ -21,7 +21,7 @@ namespace TestTools.PortDataManagment
                 OverTimeManager.Stop();
                 if (param.DistanceCardParam.AuxiliaryCommand == PortEnums.AuxiliaryCommands.End)
                 {
-                    ViewCallFunction.ViewReadCardOver();
+                    ViewCallFunction.ViewCloseLoading();
                     return;
                 }
                 try
@@ -74,7 +74,7 @@ namespace TestTools.PortDataManagment
 
         public void OverTime()
         {
-            ViewCallFunction.ViewReadCardOver();
+            ViewCallFunction.ViewCloseLoading();
         }
     }
 }

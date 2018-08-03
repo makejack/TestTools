@@ -73,6 +73,12 @@ layui.use(['layer', 'form', 'table', 'laypage', 'laydate', 'formSelects'], funct
                     }
                 }
             }
+        },
+        selectlen: function (value, item) {
+            var count = value ? value.split(",").length : 0;
+            if (count == 0) {
+                return "请选择挂失的卡片编号";
+            }
         }
     })
 
@@ -135,7 +141,7 @@ layui.use(['layer', 'form', 'table', 'laypage', 'laydate', 'formSelects'], funct
 
     $("#card_manager_table_tbody").on("click", "tr", function () {
         var row = $(this);
-        if (!row.hasClass('layui-bg-select')) {
+        if (!row.hasClass(ROW_SELECT_CLASS)) {
             var elem = $("#card_manager_table_tbody tr.layui-bg-select");
             if (elem) {
                 elem.removeClass(ROW_SELECT_CLASS);
@@ -227,9 +233,10 @@ layui.use(['layer', 'form', 'table', 'laypage', 'laydate', 'formSelects'], funct
         var elem = $(this);
         if (!elem.hasClass(ROW_SELECT_CLASS)) {
             var selectElem = $('#download_table tr.layui-bg-select');
-            if (selectedItem) {
+            if (selectElem) {
                 selectElem.removeClass(ROW_SELECT_CLASS);
             }
+
             elem.addClass(ROW_SELECT_CLASS);
 
             DownloadControlEnabled(false);
@@ -275,6 +282,7 @@ layui.use(['layer', 'form', 'table', 'laypage', 'laydate', 'formSelects'], funct
             move: false,
             closeBtn: 2,
             offset: '100px',
+            resize: false,
             content: $('#issue'),
             success: function () {
                 formSelects.value('select1', PartitionToArray(objJson['CardPartition']));
@@ -420,6 +428,7 @@ layui.use(['layer', 'form', 'table', 'laypage', 'laydate', 'formSelects'], funct
                 move: false,
                 closeBtn: 2,
                 offset: '100px',
+                resize: false,
                 content: $('#vice'),
                 success: function () {
                     formSelects.value('select3', PartitionToArray(objJson['CardPartition']));
@@ -564,6 +573,7 @@ layui.use(['layer', 'form', 'table', 'laypage', 'laydate', 'formSelects'], funct
             move: false,
             closeBtn: 2,
             offset: '100px',
+            resize: false,
             content: $('#batch'),
             success: function () {
                 var partitions = PartitionToArray(objJson['CardPartition']);
@@ -605,6 +615,7 @@ layui.use(['layer', 'form', 'table', 'laypage', 'laydate', 'formSelects'], funct
             move: false,
             closeBtn: 2,
             offset: '100px',
+            resize: false,
             content: $('#personnel'),
             success: function () {
                 var parations = PartitionToArray(objJson['CardPartition']);
@@ -630,6 +641,7 @@ layui.use(['layer', 'form', 'table', 'laypage', 'laydate', 'formSelects'], funct
             move: false,
             closeBtn: 2,
             offset: '100px',
+            resize: false,
             content: $('#personnel'),
             success: function () {
                 var partitions = PartitionToArray(objJson['CardPartition']);
@@ -655,6 +667,87 @@ layui.use(['layer', 'form', 'table', 'laypage', 'laydate', 'formSelects'], funct
         }
         if (ret) {
             LoadingMsg(msg);
+        }
+        return false;
+    })
+
+    $('#btn_lose').click(function () {
+        windowsIndex = layer.open({
+            title: '挂失',
+            type: 1,
+            closeBtn: 2,
+            move: false,
+            area: '500px',
+            offset: '100px',
+            resize: false,
+            content: $('#lose'),
+            success: function () {
+                var json = HostPostLoseInfos(0);
+                var objJson = JSON.parse(json);
+                var array = new Array();
+                $.each(objJson, function (index, item) {
+                    array[index] = {
+                        'name': item.CardNumber,
+                        'value': item.CardNumber,
+                    };
+                });
+                formSelects.data('select6', 'local', {
+                    arr: array,
+                });
+            }
+        });
+    })
+
+    form.on('submit(btn_distance_lose)', function () {
+        var values = formSelects.value('select6', 'val');
+        var ret = HostPostDistanceLose(values);
+        if (ret) {
+            LoadingMsg("挂失中···");
+        }
+        return false;
+    })
+
+    form.on('submit(btn_personnel_lose)', function () {
+        var values = formSelects.value('select6', 'val');
+        var ret = HostPostPersonnelLose(values);
+        if (ret) {
+            LoadingMsg("挂失中···");
+        }
+        return false;
+    })
+
+    $('#btn_recovery').click(function () {
+        windowsIndex = layer.open({
+            title: '解除挂失',
+            type: 1,
+            closeBtn: 2,
+            move: false,
+            area: '500px',
+            offset: '100px',
+            resize: false,
+            content: $('#recovery'),
+            success: function () {
+                var json = HostPostLoseInfos(1);
+                var objJson = JSON.parse(json);
+                var array = new Array();
+                $.each(objJson, function (index, item) {
+                    array[index] = {
+                        'name': item.CardNumber,
+                        'value': item.CardNumber,
+                    };
+                });
+                formSelects.data('select7', 'local', {
+                    arr: array,
+                });
+            }
+        });
+    })
+
+    form.on('submit(btn_personnel_recovery)', function () {
+        var values = formSelects.value('select7', 'val');
+        var ret = HostPostPersonnelRecovery(values);
+        if (ret) {
+            LoadingMsg("解挂中···");
         }
         return false;
     })
@@ -1501,12 +1594,7 @@ layui.use(['layer', 'form', 'table', 'laypage', 'laydate', 'formSelects'], funct
             layout: ['prev', 'page', 'next', 'count'],
             jump: function (obj, first) {
                 var json = HostPostUserInfos(searchContent, obj.curr);
-                var objJson = JSON.parse(json);
-                var content = "";
-                $.each(objJson, function (index, item) {
-                    content += ViewDisplayDownloadTableRow(index, item);
-                });
-                $('#download_table tbody').html(content);
+                DisplayClientInfos(json);
             }
         })
     })
@@ -1542,17 +1630,27 @@ layui.use(['layer', 'form', 'table', 'laypage', 'laydate', 'formSelects'], funct
                 return false;
             }
             json = HostPostAddUserInfo(json);
-            var objJson = JSON.parse(json);
-            var content = ViewDisplayDownloadTableRow(index, objJson);
-            $('#download_table tbody').prepend(content);
+            // var objJson = JSON.parse(json);
+            // var content = ViewDisplayDownloadTableRow(index, objJson);
+            // $('#download_table tbody').prepend(content);
+            DisplayClientInfos(json);
         } else {
             json = HostPostUpdateUserInfo(json, index);
             var objJson = JSON.parse(json);
-            elem.html(ViewDisplayDownloadTableRowContent(index, objJson));
+            elem.html(ViewDisplayDownloadTableRowContent(index + 1, objJson));
         }
         CloseWindows();
         return false;
     })
+
+    function DisplayClientInfos(json) {
+        var objJson = JSON.parse(json);
+        var content = "";
+        $.each(objJson, function (index, item) {
+            content += ViewDisplayDownloadTableRow(index + 1, item);
+        });
+        $('#download_table tbody').html(content);
+    }
 
     $("#btn_edit_ustomer_info").click(function () {
         $('#customer_number').prop(DISABLED_PROPERTY, true);
@@ -1715,6 +1813,14 @@ $(function () {
         sectionTarget = target.data('menu');
         if (!target.hasClass("selected") && !isAnimating) {
             TriggerAnimation(sectionTarget, true);
+        }
+
+        var index = $(this).index();
+        if (index == 4) {
+            var len = $('#download_table tbody tr').length;
+            if (len == 0) {
+                $('#btn_download_show').trigger('click');
+            }
         }
     });
 
@@ -1986,10 +2092,6 @@ function DisplayCardContent(strJson, count) {
     return content;
 }
 
-function ViewReadCardOver() {
-    CloseLoading();
-}
-
 function ViewViceRemoveLock(json) {
     var objJson = JSON.parse(json);
     form.reload('vicetable', {
@@ -2007,10 +2109,6 @@ function ViewIssueOver(json) {
     CloseWindows();
 }
 
-function ViewIssueOverTime() {
-    CloseLoading();
-}
-
 function ViewBatchOver(count) {
     CloseLoading();
     if (count == 0) {
@@ -2019,9 +2117,9 @@ function ViewBatchOver(count) {
 }
 
 function ViewDisplayBatchContent(json, index) {
-    var row = parseInt(index) + 1;
-    var content = DisplayCardContent(json, row);
-    var elem = $('#card_manager_table_tbody').children()[0];
+    var row = parseInt(index);
+    var content = DisplayCardContent(json, row + 1);
+    var elem = $('#card_manager_table_tbody').children()[row];
     $(elem).html(content);
 }
 
@@ -2029,7 +2127,7 @@ function ViewPersonnelIssueOver(json) {
     CloseLoading();
 
     if (json.length > 0) {
-        var index = $('#personnel_index').val();
+        var index = parseInt($('#personnel_index').val());
         var content = DisplayCardContent(json, index + 1);
         var elem = $('#card_manager_table_tbody').children()[index];
         $(elem).html(content);
@@ -2038,15 +2136,12 @@ function ViewPersonnelIssueOver(json) {
     }
 }
 
-function ViewPersonnelIssueOverTime() {
-    CloseLoading();
-}
-
 function DistnaceControlChange(enabled) {
     var btnRefresh = $('#btn_refresh').prop(DISABLED_PROPERTY, enabled);
     var btnPersonnelIssue = $('#btn_personnel_issue').prop(DISABLED_PROPERTY, enabled);
     var btnPersonnelBatch = $('#btn_personnel_batch').prop(DISABLED_PROPERTY, enabled);
-    var btnReportRelieve = $('#btn_report_relieve').prop(DISABLED_PROPERTY, enabled);
+    var btnlose = $('#btn_lose').prop(DISABLED_PROPERTY, enabled);
+    var btnrecovery = $('#btn_recovery').prop(DISABLED_PROPERTY, enabled);
     var btnIssue = $('#btn_issue');
     var btnBatch = $('#btn_batch');
 
@@ -2056,12 +2151,14 @@ function DistnaceControlChange(enabled) {
         btnBatch.addClass(BUTTON_DISABLED_CLASS);
         btnPersonnelIssue.addClass(BUTTON_DISABLED_CLASS);
         btnPersonnelBatch.addClass(BUTTON_DISABLED_CLASS);
-        btnReportRelieve.addClass(BUTTON_DISABLED_CLASS);
+        btnlose.addClass(BUTTON_DISABLED_CLASS);
+        btnrecovery.addClass(BUTTON_DISABLED_CLASS);
     } else {
         btnRefresh.removeClass(BUTTON_DISABLED_CLASS);
         btnBatch.removeClass(BUTTON_DISABLED_CLASS);
         btnPersonnelBatch.removeClass(BUTTON_DISABLED_CLASS);
-        btnReportRelieve.removeClass(BUTTON_DISABLED_CLASS);
+        btnlose.removeClass(BUTTON_DISABLED_CLASS);
+        btnrecovery.removeClass(BUTTON_DISABLED_CLASS);
         if (rowIndex > -1) {
             btnIssue.removeClass(BUTTON_DISABLED_CLASS);
             btnPersonnelIssue.removeClass(BUTTON_DISABLED_CLASS);
@@ -2070,6 +2167,12 @@ function DistnaceControlChange(enabled) {
     }
     btnIssue.prop(DISABLED_PROPERTY, enabled);
     btnBatch.prop(DISABLED_PROPERTY, enabled);
+}
+
+function ViewLoseOver() {
+    CloseLoading();
+
+    CloseWindows();
 }
 
 /* 卡片管理
@@ -2228,7 +2331,7 @@ function WirelessControlEnabled(enabled) {
 
 function ViewDownloadOver(ret) {
     CloseLoading();
-    if (ret == 1) {
+    if (ret == 'True') {
         layer.msg('下载成功。', {
             icon: 1,
             anim: 6,
@@ -2244,24 +2347,20 @@ function ViewDownloadOver(ret) {
     }
 }
 
-function ViewDownloadOverTime() {
-    CloseLoading();
-}
-
 function DownloadControlEnabled(enabled) {
-    $('#btn_edit_ustomer_info').prop(DISABLED_PROPERTY, enabled);
-    $('#btn_del_ustomer_info').prop(DISABLED_PROPERTY, enabled);
-    $('#btn_create_config').prop(DISABLED_PROPERTY, enabled);
+    var btnEdit = $('#btn_edit_ustomer_info').prop(DISABLED_PROPERTY, enabled);
+    var btnDel = $('#btn_del_ustomer_info').prop(DISABLED_PROPERTY, enabled);
+    var btnCreate = $('#btn_create_config').prop(DISABLED_PROPERTY, enabled);
 
     if (enabled) {
-        $('#btn_edit_ustomer_info').addClass(BUTTON_DISABLED_CLASS);
-        $('#btn_del_ustomer_info').addClass(BUTTON_DISABLED_CLASS);
-        $('#btn_create_config').addClass(BUTTON_DISABLED_CLASS);
+        btnEdit.addClass(BUTTON_DISABLED_CLASS);
+        btnDel.addClass(BUTTON_DISABLED_CLASS);
+        btnCreate.addClass(BUTTON_DISABLED_CLASS);
     } else {
-        if ($('#btn_edit_ustomer_info').hasClass(BUTTON_DISABLED_CLASS)) {
-            $('#btn_edit_ustomer_info').removeClass(BUTTON_DISABLED_CLASS);
-            $('#btn_del_ustomer_info').removeClass(BUTTON_DISABLED_CLASS);
-            $('#btn_create_config').removeClass(BUTTON_DISABLED_CLASS);
+        if (btnEdit.hasClass(BUTTON_DISABLED_CLASS)) {
+            btnEdit.removeClass(BUTTON_DISABLED_CLASS);
+            btnDel.removeClass(BUTTON_DISABLED_CLASS);
+            btnCreate.removeClass(BUTTON_DISABLED_CLASS);
         }
     }
     DownloadNumberControlEnabled(enabled);
@@ -2285,9 +2384,11 @@ function DownloadNumberControlEnabled(enabled) {
     if (enabled) {
         btnNumber.prop(DISABLED_PROPERTY, enabled).addClass(BUTTON_DISABLED_CLASS);
     } else {
-        var index = $('#download_table tr.layui-bg-select').index();
-        if (index > -1) {
-            btnNumber.prop(DISABLED_PROPERTY, enabled).removeClass(BUTTON_DISABLED_CLASS);
+        if (!$('#btn_download_time').prop(DISABLED_PROPERTY)) {
+            var index = $('#download_table tr.layui-bg-select').index();
+            if (index > -1) {
+                btnNumber.prop(DISABLED_PROPERTY, enabled).removeClass(BUTTON_DISABLED_CLASS);
+            }
         }
     }
 }
@@ -2374,17 +2475,17 @@ function PartitionToStr(partition) {
     return txt;
 }
 
-function ViewAlert(msg, title, icon) {
-    layer.alert(msg, {
-        title: title,
-        icon: icon,
-        move: false,
-        closeBtn: 2,
-    });
-}
-
 function ViewMessage(msg, icon) {
     layer.msg(msg, {
         icon: icon,
+    });
+}
+
+function ViewAlert(msg) {
+    layer.alert(msg, {
+        title: "提示",
+        icon: 2,
+        move: false,
+        closeBtn: 2,
     });
 }

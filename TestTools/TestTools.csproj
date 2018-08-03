@@ -24,10 +24,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
+    <PlatformTarget>x86</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
+    <OutputPath>..\Debug\</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -77,12 +77,13 @@
     <Compile Include="PortDataManagment\CardOperation\CardBatchPersonnel.cs" />
     <Compile Include="PortDataManagment\CardOperation\CardIssue.cs" />
     <Compile Include="PortDataManagment\CardOperation\CardIssuePersonnel.cs" />
-    <Compile Include="PortDataManagment\CardOperation\CardLoss.cs" />
+    <Compile Include="PortDataManagment\CardOperation\PersonnelCardLoss.cs" />
     <Compile Include="PortDataManagment\CardOperation\CardRefresh.cs" />
     <Compile Include="PortDataManagment\CardOperation\ViceCardRemoveLock.cs" />
     <Compile Include="PortDataManagment\ClientNumber\NumberDownload.cs" />
     <Compile Include="PortDataManagment\ClientNumber\PasswordDownload.cs" />
     <Compile Include="PortDataManagment\ClientNumber\TimeDownload.cs" />
+    <Compile Include="PortDataManagment\CardOperation\DistanceCardLoss.cs" />
     <Compile Include="PortDataManagment\EncryptOperation\DistanceCardEncrypt.cs" />
     <Compile Include="PortDataManagment\EncryptOperation\DistanceDeviceEncrypt.cs" />
     <Compile Include="PortDataManagment\EncryptOperation\IcCardEncrypt.cs" />

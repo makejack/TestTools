@@ -13,7 +13,7 @@ namespace Bll
     /// </summary>
     public class DistanceLoss
     {
-        public static byte[] Lose(List<CardInfo> cards)
+        public static byte[] DistanceLose(List<CardInfo> cards)
         {
             StringBuilder sb = new StringBuilder();
             int dataType = 16777215;
@@ -42,6 +42,22 @@ namespace Bll
                 sb.Append($"{item.CardTime.AddMonths(1):yyMM}");
             }
             return PortAgreement.WriteACard("797979", 0, $"{cards.Count:X2}{dataType:X6}{sb.ToString()}");
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="infos">挂失或解挂的卡片信息</param>
+        /// <param name="state">挂失或解挂的状态 1 - 解挂 2 - 挂失</param>
+        /// <returns></returns>
+        public static byte[] PersonnelLoseOrRecovery(List<CardInfo> infos,int state)
+        {
+            StringBuilder sb = new StringBuilder();
+            foreach (CardInfo item in infos)
+            {
+                sb.Append($"{item.CardNumber:X2}0{state}{item.CardTime:yyMM}");
+            }
+            return PortAgreement.WriteACard("797979", 0, sb.ToString());
         }
 
     }

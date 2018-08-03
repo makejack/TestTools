@@ -171,8 +171,8 @@ namespace TestTools
             try
             {
                 string json = e.Arguments[0].StringValue;
-                UserInfo info = UserManager.Add(json);
-                json = Utility.JsonSerializerBySingleData(info);
+                UserManager.Add(json);
+                json = Utility.JsonSerializerByArrayData(UserManager.UserInfos.ToArray());
                 e.SetReturnValue(json);
             }
             catch (Exception ex)

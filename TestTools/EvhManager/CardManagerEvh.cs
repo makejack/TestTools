@@ -11,6 +11,7 @@ using TestTools.Devices;
 using TestTools.PortDataManagment;
 using System.Threading;
 using System.Reflection;
+using Chromium.Remote.Event;
 
 namespace TestTools
 {
@@ -22,6 +23,10 @@ namespace TestTools
             Main.GetMain.GlobalObject.AddFunction("HostPostDelRowData").Execute += Host_PostDelRowData;
             Main.GetMain.GlobalObject.AddFunction("HostPostDelAllData").Execute += Host_PostDelAllData;
             Main.GetMain.GlobalObject.AddFunction("HostPostCardInfos").Execute += Host_PostCardInfos;
+            Main.GetMain.GlobalObject.AddFunction("HostPostLoseInfos").Execute += Host_PostLoseInfos;
+            Main.GetMain.GlobalObject.AddFunction("HostPostDistanceLose").Execute += Host_PostDistanceLose;
+            Main.GetMain.GlobalObject.AddFunction("HostPostPersonnelLose").Execute += Host_PostPersonnelLose;
+            Main.GetMain.GlobalObject.AddFunction("HostPostPersonnelRecovery").Execute += Host_PostPersonnelRecovery;
             Main.GetMain.GlobalObject.AddFunction("HostRefreshOperation").Execute += Host_RefreshOperation;
             Main.GetMain.GlobalObject.AddFunction("HostPostCardInfo").Execute += Host_PostCardInfo;
             Main.GetMain.GlobalObject.AddFunction("HostPostViceCardInfo").Execute += Host_PostViceCardInfo;
@@ -37,6 +42,108 @@ namespace TestTools
             Main.GetMain.GlobalObject.AddFunction("HostPostBatch").Execute += Host_PostBatch;
             Main.GetMain.GlobalObject.AddFunction("HostPostPersonnelIssue").Execute += Host_PostPersonnelIssue;
             Main.GetMain.GlobalObject.AddFunction("HostPostPersonnelBatch").Execute += Host_PostPersonnelBatch;
+        }
+
+        private static void Host_PostPersonnelRecovery(object sender, CfrV8HandlerExecuteEventArgs e)
+        {
+            try
+            {
+                string loseCardNumber = GetLoseNumber(e);
+                List<CardInfo> list = CardManager.GetCardInfos(loseCardNumber);
+                CardManager.LossLists = list;
+                byte[] by = PortAgreement.ReadACard("797979", 1);
+                bool ret = SerialPortManager.WriteSerialPortData(SerialPortManager.Device1, by);
+                if (ret)
+                {
+                    ReceivedManager.SetReceivedFunction<PersonnelCardLoss>();
+                }
+                e.SetReturnValue(ret);
+            }
+            catch (Exception ex)
+            {
+                Log4Helper.ErrorInfo(ex.Message, ex);
+                ViewCallFunction.ViewAlert(ex.Message);
+            }
+        }
+
+        private static void Host_PostPersonnelLose(object sender, Chromium.Remote.Event.CfrV8HandlerExecuteEventArgs e)
+        {
+            try
+            {
+                string loseCardNumber = GetLoseNumber(e);
+                List<CardInfo> list = CardManager.GetCardInfos(loseCardNumber);
+                CardManager.LossLists = list;
+                byte[] by = PortAgreement.ReadACard("797979", 1);
+                //byte[] by = DistanceLoss.PersonnelLoseOrRecovery(list,2);
+                bool ret = SerialPortManager.WriteSerialPortData(SerialPortManager.Device1, by);
+                if (ret)
+                {
+                    ReceivedManager.SetReceivedFunction<PersonnelCardLoss>();
+                }
+                e.SetReturnValue(ret);
+            }
+            catch (Exception ex)
+            {
+                Log4Helper.ErrorInfo(ex.Message, ex);
+                ViewCallFunction.ViewAlert(ex.Message);
+            }
+        }
+
+        private static string GetLoseNumber(Chromium.Remote.Event.CfrV8HandlerExecuteEventArgs e)
+        {
+            Chromium.Remote.CfrV8Value cfrV8Value = e.Arguments[0];
+            StringBuilder loseCardNumber = new StringBuilder();
+            if (cfrV8Value.IsArray)
+            {
+                for (int i = 0; i < cfrV8Value.ArrayLength; i++)
+                {
+                    loseCardNumber.Append($"'{cfrV8Value.GetValue(i).StringValue}'");
+                    if (i < cfrV8Value.ArrayLength - 1)
+                    {
+                        loseCardNumber.Append(',');
+                    }
+                }
+            }
+            return loseCardNumber.ToString();
+        }
+
+        private static void Host_PostDistanceLose(object sender, Chromium.Remote.Event.CfrV8HandlerExecuteEventArgs e)
+        {
+            try
+            {
+                string loseCardNumber = GetLoseNumber(e); 
+                List<CardInfo> list = CardManager.GetCardInfos(loseCardNumber);
+                CardManager.LossLists = list;
+                byte[] by = PortAgreement.ReadACard("797979", 1);
+                //byte[] by = DistanceLoss.DistanceLose(list);
+                bool ret = SerialPortManager.WriteSerialPortData(SerialPortManager.Device1, by);
+                if (ret)
+                {
+                    ReceivedManager.SetReceivedFunction<DistanceCardLoss>();
+                }
+                e.SetReturnValue(ret);
+            }
+            catch (Exception ex)
+            {
+                Log4Helper.ErrorInfo(ex.Message, ex);
+                ViewCallFunction.ViewAlert(ex.Message);
+            }
+        }
+
+        private static void Host_PostLoseInfos(object sender, Chromium.Remote.Event.CfrV8HandlerExecuteEventArgs e)
+        {
+            try
+            {
+                int state = e.Arguments[0].IntValue;
+                List<CardInfo> list = CardManager.GetCardInfos(state);
+                string json = Utility.JsonSerializerByArrayData(list.ToArray());
+                e.SetReturnValue(json);
+            }
+            catch (Exception ex)
+            {
+                Log4Helper.ErrorInfo(ex.Message, ex);
+                ViewCallFunction.ViewAlert(ex.Message);
+            }
         }
 
         private static void Host_PostDelAllData(object sender, Chromium.Remote.Event.CfrV8HandlerExecuteEventArgs e)

@@ -21,6 +21,18 @@ namespace Bll.Management
             return Dal_CardInfo.GetCardCount(searchContent);
         }
 
+        public static List<CardInfo> GetCardInfos(int state)
+        {
+            string where = $" and CardReportLoss = {state} and CardType >= 0 and CardType <= 2 ";
+            return Dal_CardInfo.GetCardInfos(where, null);
+        }
+
+        public static List<CardInfo> GetCardInfos(string numbers)
+        {
+            string where = $" and CardNumber in ({numbers})";
+            return Dal_CardInfo.GetCardInfos(where, null);
+        }
+
         public static List<CardInfo> GetCardInfos(string searchContent, int page, int count)
         {
             StringBuilder strWhere = new StringBuilder(" and CardType != -1 ");

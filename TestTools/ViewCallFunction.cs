@@ -14,21 +14,10 @@ namespace TestTools
         /// 消息提示框
         /// </summary>
         /// <param name="msg"></param>
-        /// <param name="icon">2 - 错误| 0 - 消息 | 1 - 成功 | 3 - 警告</param>
-        public static void ViewAlert(string msg, int icon = 2)
+        public static void ViewAlert(string msg)
         {
-            ViewAlert(msg, "提示", icon);
-        }
-
-        /// <summary>
-        /// 消息提示框
-        /// </summary>
-        /// <param name="msg"></param>
-        /// <param name="title"></param>
-        /// <param name="icon">2 - 错误| 0 - 消息 | 1 - 成功 | 3 - 警告</param>
-        public static void ViewAlert(string msg, string title, int icon)
-        {
-            Main.GetMain.ExecuteJavascript($"ViewAlert('{msg}','{title}','{icon}')");
+            msg = msg.Replace("\r"," ").Replace("\n"," ");
+            Main.GetMain.ExecuteJavascript($"ViewAlert('{msg}')");
         }
 
         /// <summary>
@@ -39,6 +28,14 @@ namespace TestTools
         public static void ViewMessage(string msg, string icon)
         {
             Main.GetMain.ExecuteJavascript($"ViewMessage('{msg}','{icon}')");
+        }
+
+        /// <summary>
+        /// 关闭加载层
+        /// </summary>
+        public static void ViewCloseLoading()
+        {
+            Main.GetMain.ExecuteJavascript("CloseLoading()");
         }
 
         /// <summary>
@@ -80,28 +77,12 @@ namespace TestTools
         }
 
         /// <summary>
-        /// 定距卡读卡结束
-        /// </summary>
-        public static void ViewReadCardOver()
-        {
-            Main.GetMain.ExecuteJavascript("ViewReadCardOver()");
-        }
-
-        /// <summary>
         /// 定距卡发行结束
         /// </summary>
         public static void ViewIssueOver(CardInfo info)
         {
             string json = Utility.JsonSerializerBySingleData<CardInfo>(info);
             Main.GetMain.ExecuteJavascript($"ViewIssueOver('{json}')");
-        }
-
-        /// <summary>
-        /// 定距卡发行超时
-        /// </summary>
-        public static void ViewIssueOverTime()
-        {
-            Main.GetMain.ExecuteJavascript($"ViewIssueOverTime()");
         }
 
         /// <summary>
@@ -128,14 +109,6 @@ namespace TestTools
         }
 
         /// <summary>
-        /// 人员通道定距卡发行超时
-        /// </summary>
-        public static void ViewIssuePersonnelOverTime()
-        {
-            Main.GetMain.ExecuteJavascript("ViewPersonnelIssueOverTime()");
-        }
-
-        /// <summary>
         /// 显示批量完成的内容
         /// </summary>
         /// <param name="info"></param>
@@ -151,6 +124,11 @@ namespace TestTools
         internal static void ViewBatchOver(int count)
         {
             Main.GetMain.ExecuteJavascript($"ViewBatchOver('{count}')");
+        }
+
+        internal static void ViewLoseOver()
+        {
+            Main.GetMain.ExecuteJavascript("ViewLoseOver()");
         }
 
         /// <summary>
@@ -191,7 +169,7 @@ namespace TestTools
         /// </summary>
         internal static void ViewDownloadOver(bool result)
         {
-            Main.GetMain.ExecuteJavascript($"ViewDownloadOver('{(result ? 1 : -1)}')");
+            Main.GetMain.ExecuteJavascript($"ViewDownloadOver('{result}')");
         }
 
         /// <summary>

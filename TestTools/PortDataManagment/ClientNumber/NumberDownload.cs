@@ -27,7 +27,7 @@ namespace TestTools.PortDataManagment
 
         public void OverTime()
         {
-            ViewCallFunction.ViewDownloadOverTime();
+            ViewCallFunction.ViewCloseLoading();
         }
     }
 }

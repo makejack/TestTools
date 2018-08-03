@@ -114,7 +114,6 @@ namespace Bll
                                 break;
                         }
                         break;
-                    case PortEnums.DealFunctions.HostNoResult:
                     case PortEnums.DealFunctions.HostResult:
                         param.Command.HCommand = (PortEnums.HCommands)command;
                         param.HostParam = new HostParameter();
@@ -127,6 +126,7 @@ namespace Bll
                                 break;
                         }
                         break;
+                    case PortEnums.DealFunctions.HostNoResult:
                     case PortEnums.DealFunctions.ProsennelHost:
                         param.Command.HCommand = (PortEnums.HCommands)command;
                         param.HostParam = new HostParameter();
