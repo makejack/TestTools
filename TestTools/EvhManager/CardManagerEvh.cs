@@ -111,7 +111,7 @@ namespace TestTools
         {
             try
             {
-                string loseCardNumber = GetLoseNumber(e); 
+                string loseCardNumber = GetLoseNumber(e);
                 List<CardInfo> list = CardManager.GetCardInfos(loseCardNumber);
                 CardManager.LossLists = list;
                 byte[] by = PortAgreement.ReadACard("797979", 1);
@@ -640,12 +640,15 @@ namespace TestTools
                 Chromium.Remote.CfrTime cTime = e.Arguments[1].DateValue;
                 DateTime time = new DateTime(cTime.Year, cTime.Month, cTime.DayOfMonth);
                 int partition = e.Arguments[2].IntValue;
+                int dataType = e.Arguments[3].IntValue;
+                string customData = e.Arguments[4].StringValue;
 
                 CardInfo info = CardManager.CardInfos[index];
                 info.CardTime = time;
                 info.CardPartition = partition;
 
-                byte[] by = PersonnelIssue.Issue(info);
+                byte[] by = PersonnelIssue.Issue(info, dataType, customData);
+
                 bool ret = SerialPortManager.WriteSerialPortData(SerialPortManager.Device1, by);
                 if (ret)
                 {
@@ -678,7 +681,7 @@ namespace TestTools
                         item.CardTime = CardManager.BatchParam.CardTime;
                         item.CardPartition = CardManager.BatchParam.CardPartition;
 
-                        byte[] by = PersonnelIssue.Issue(item);
+                        byte[] by = PersonnelIssue.Issue(item, 1, string.Empty);
                         bool ret = SerialPortManager.WriteSerialPortData(SerialPortManager.Device1, by);
                         if (ret)
                         {

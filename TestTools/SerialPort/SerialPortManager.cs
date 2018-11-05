@@ -17,6 +17,8 @@ namespace TestTools
 
         public static PersonnelDevice Device2;
 
+        public static int Device2Address = 1;
+
         public static void InitSerialDevice()
         {
             Device1 = new DistanceDevice(CreateSerialPort(), "Device1");

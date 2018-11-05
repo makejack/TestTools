@@ -31,6 +31,7 @@ namespace TestTools.Devices
 
             m_Validation = new DataValidation();
             m_Validation.DealHeadEnds.Add(new DealHeadEnd(10, 13));
+            m_Validation.DealHeadEnds.Add(new DealHeadEnd(9, 12));
         }
 
         public void SetDataReceived()

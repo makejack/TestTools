@@ -15,7 +15,7 @@ namespace TestTools.Devices
     public class DistanceDevice : IDevice
     {
         public SerialPortEx SerialPortDevice { get; set; }
-        
+
         private DataValidation m_Validation;
 
         public DistanceDevice(SerialPortEx serial, string name)

@@ -106,10 +106,12 @@ namespace TestTools
 
                             if (!SerialPortManager.Device2.SerialPortDevice.IsOpen)
                             {
+                                int address = 1;
                                 try
                                 {
-                                    for (int number = 0; number < 50; number++)
+                                    for (int number = 1; number <= 50; number++)
                                     {
+                                        address = number;
                                         if (m_StopTimer) return;
                                         by = PortAgreement.CorridorReadCardData(number);
                                         m_SerialPort.Write(by);
@@ -131,6 +133,10 @@ namespace TestTools
 #if DEBUG
                                     Console.WriteLine(ex.Message);
 #endif
+                                }
+                                finally
+                                {
+                                    SerialPortManager.Device2Address = address;
                                 }
                             }
 

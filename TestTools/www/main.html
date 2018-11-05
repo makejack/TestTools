@@ -92,12 +92,12 @@
         <div class="cd-section index visible">
             <div class="cd-header">
                 <div class="layui-btn-group">
-                    <buton id="btn_refresh" class="layui-btn layui-btn-normal layui-btn-disabled" disabled>刷新</buton>
-                    <buton id="btn_issue" class="layui-btn layui-btn-normal layui-btn-disabled" disabled>发行</buton>
-                    <buton id="btn_batch" class="layui-btn layui-btn-normal layui-btn-disabled" disabled>批量</buton>
-                    <buton id="btn_personnel_issue" class="layui-btn layui-btn-normal layui-btn-disabled" disabled>发行（人员通道）</buton>
-                    <buton id="btn_personnel_batch" class="layui-btn layui-btn-normal layui-btn-disabled" disabled>批量（人员通道）</buton>
-                    <buton id="btn_lose" class="layui-btn layui-btn-normal layui-btn-disabled" disabled>挂失</buton>
+                    <button id="btn_refresh" class="layui-btn layui-btn-normal layui-btn-disabled" disabled>刷新</button>
+                    <button id="btn_issue" class="layui-btn layui-btn-normal layui-btn-disabled" disabled>发行</button>
+                    <button id="btn_batch" class="layui-btn layui-btn-normal layui-btn-disabled" disabled>批量</button>
+                    <button id="btn_personnel_issue" class="layui-btn layui-btn-normal layui-btn-disabled" disabled>发行（人员通道）</button>
+                    <button id="btn_personnel_batch" class="layui-btn layui-btn-normal layui-btn-disabled" disabled>批量（人员通道）</button>
+                    <button id="btn_lose" class="layui-btn layui-btn-normal layui-btn-disabled" disabled>挂失</button>
                     <button id="btn_recovery" class="layui-btn layui-btn-normal layui-btn-disabled" disabled>解挂</button>
                 </div>
             </div>
@@ -133,21 +133,21 @@
                                 <div id="distanceoldpwdgroup" class="layui-form-item">
                                     <label class="layui-form-label">旧密码</label>
                                     <div class="layui-input-inline">
-                                        <input type="text" name="oldpwd" maxlength="6" required lay-verify="len6" class="layui-input" id="distance_old_pwd">
+                                        <input type="text" name="oldpwd" maxlength="6" required lay-verify="len6|limitnumber" class="layui-input" id="distance_old_pwd">
                                     </div>
                                     <input type="checkbox" lay-filter="distance_default_old_pwd" title="默认" id="distance_default_old_pwd">
                                 </div>
                                 <div class="layui-form-item">
                                     <label class="layui-form-label">新密码</label>
                                     <div class="layui-input-inline">
-                                        <input type="text" name="pwd" maxlength="6" required lay-verify="len6" class="layui-input" id="distance_pwd">
+                                        <input type="text" name="pwd" maxlength="6" required lay-verify="len6|limitnumber" class="layui-input" id="distance_pwd">
                                     </div>
                                     <input type="checkbox" lay-filter="distance_default_pwd" id="distance_default_pwd" title="默认">
                                 </div>
                                 <div class="layui-form-item">
                                     <label class="layui-form-label">确认密码</label>
                                     <div class="layui-input-inline">
-                                        <input type="text" name="confirmpwd" maxlength="6" required lay-verify="len6" class="layui-input" id="distance_confirm_pwd">
+                                        <input type="text" name="confirmpwd" maxlength="6" required lay-verify="len6|limitnumber" class="layui-input" id="distance_confirm_pwd">
                                     </div>
                                 </div>
                                 <div class="layui-form-item">
@@ -245,11 +245,11 @@
         <div class="cd-section config">
             <div class="cd-header">
                 <div class="layui-btn-group">
-                    <buton id="btn_config_show" class="layui-btn layui-btn-normal">显示</buton>
-                    <buton id="btn_config_add" class="layui-btn layui-btn-normal">添加</buton>
-                    <!-- <buton id="btn_config_edit" class="layui-btn layui-btn-normal">编辑</buton>
-                    <buton id="btn_config_del" class="layui-btn layui-btn-normal">删除</buton> -->
-                    <buton id="btn_config_export" class="layui-btn layui-btn-normal layui-btn-disabled" disabled>导出</buton>
+                    <button id="btn_config_show" class="layui-btn layui-btn-normal">显示</button>
+                    <button id="btn_config_add" class="layui-btn layui-btn-normal">添加</button>
+                    <!-- <button id="btn_config_edit" class="layui-btn layui-btn-normal">编辑</button>
+                    <button id="btn_config_del" class="layui-btn layui-btn-normal">删除</button> -->
+                    <button id="btn_config_export" class="layui-btn layui-btn-normal layui-btn-disabled" disabled>导出</button>
                 </div>
             </div>
             <div class="cd-content  cd-content-pager">
@@ -328,12 +328,13 @@
                     <button id="btn_download_number" class="layui-btn layui-btn-normal layui-btn-disabled" disabled>下载编号</button>
                     <button id="btn_download_time" class="layui-btn layui-btn-normal layui-btn-disabled" disabled>下载时间</button>
                     <button id="btn_download_pwd" class="layui-btn layui-btn-normal layui-btn-disabled" disabled>下载密码</button>
+                    <button id="btn_test_port" class="layui-btn layui-btn-normal layui-btn-disabled" disabled>测试通信</button>
                     <button id="btn_download_show" class="layui-btn layui-btn-normal">显示</button>
                     <button id="btn_add_ustomer_info" class="layui-btn layui-btn-normal">添加</button>
-                    <buton id="btn_edit_ustomer_info" class="layui-btn layui-btn-normal layui-btn-disabled" disabled>编辑</buton>
-                    <buton id="btn_del_ustomer_info" class="layui-btn layui-btn-normal layui-btn-disabled" disabled>删除</buton>
+                    <button id="btn_edit_ustomer_info" class="layui-btn layui-btn-normal layui-btn-disabled" disabled>编辑</button>
+                    <button id="btn_del_ustomer_info" class="layui-btn layui-btn-normal layui-btn-disabled" disabled style="display:none">删除</button>
                     <button id="btn_limit_number" class="layui-btn layui-btn-normal">限制</button>
-                    <buton id="btn_create_config" class="layui-btn layui-btn-normal layui-btn-disabled" disabled>生成配置</buton>
+                    <button id="btn_create_config" class="layui-btn layui-btn-normal layui-btn-disabled" disabled>生成配置</button>
                 </div>
                 <div class="layui-search">
                     <input type="text" id="search_customer" class="layui-input layui-input-search" placeholder="搜索">
@@ -664,6 +665,17 @@
             </div>
         </div>
         <div class="layui-row">
+            <div class="layui-form-item">
+                <label for="" class="layui-form-label">数据类型</label>
+                <div class="layui-input-block">
+                    <select name="datatype" lay-filter="personnel_data_type">
+                        <option value="1" selected>通用数据格式</option>
+                        <option value="2">自定义数据格式</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="layui-row">
             <div class="layui-form-item" id="perosnnel_number_group">
                 <label for="" class="layui-form-label">卡片编号</label>
                 <div class="layui-input-block">
@@ -706,6 +718,14 @@
         </div>
         <div class="layui-row">
             <div class="layui-form-item">
+                <label for="" class="layui-form-label">自定义数据</label>
+                <div class="layui-input-block">
+                    <input type="text" name="customdata" id="customdata" class="layui-input" disabled>
+                </div>
+            </div>
+        </div>
+        <div class="layui-row">
+            <div class="layui-form-item">
                 <div class="layui-col-md2 layui-col-md-offset10">
                     <button class="layui-btn layui-btn-normal layui-btn-fluid" lay-submit="" lay-filter="btn_personnel_enter">确认</button>
                 </div>
@@ -718,7 +738,7 @@
     <form class="layui-form">
         <div class="layui-form-item"></div>
         <div class="layui-form-item">
-            <select name="" id="" xm-select="select6" xm-select-search="" xm-select-search-type="dl" xm-select-max="10" lay-verify="selectlen">
+            <select name="" id="" xm-select="select6" xm-select-search="" xm-select-search-type="dl" xm-select-max="10" lay-verify="selectcount">
                 <option value="">请选择挂失的卡片编号（最多10张）</option>
             </select>
         </div>
@@ -741,7 +761,7 @@
             <div class="layui-elem-quote">定距卡重新发行即可解挂</div>
         </div>
         <div class="layui-form-item">
-            <select name="" id="" xm-select="select7" xm-select-search="" xm-select-search-type="dl" xm-select-max="10" lay-verify="selectlen">
+            <select name="" id="" xm-select="select7" xm-select-search="" xm-select-search-type="dl" xm-select-max="10" lay-verify="selectcount">
                 <option value="">请选择解挂的卡片编号（最多10张）</option>
             </select>
         </div>
@@ -1090,7 +1110,7 @@
         <div class="layui-form-item">
             <label class="layui-form-label">旧密码</label>
             <div class="layui-input-inline">
-                <input type="text" name="oldpwd" class="layui-input" maxlength="6" required lay-verify="len6number|number" placeholder="6 位数字"
+                <input type="text" name="oldpwd" class="layui-input" maxlength="6" required lay-verify="len6|number" placeholder="6 位数字"
                     id="personnel_old_pwd">
             </div>
             <input type="checkbox" title="默认" lay-skin="primary" lay-filter="default_personnel_old_pwd">
@@ -1098,15 +1118,14 @@
         <div class="layui-form-item">
             <label class="layui-form-label">新密码</label>
             <div class="layui-input-inline">
-                <input type="text" name="pwd" class="layui-input" maxlength="6" required lay-verify="len6number|number" placeholder="6 位数字"
-                    id="personnel_pwd">
+                <input type="text" name="pwd" class="layui-input" maxlength="6" required lay-verify="len6|number" placeholder="6 位数字" id="personnel_pwd">
             </div>
             <input type="checkbox" title="默认" lay-skin="primary" lay-filter="default_personnel_pwd">
         </div>
         <div class="layui-form-item">
             <label class="layui-form-label">确认密码</label>
             <div class="layui-input-inline">
-                <input type="text" name="confirmpwd" class="layui-input" maxlength="6" required lay-verify="len6number|number" placeholder="6 位数字"
+                <input type="text" name="confirmpwd" class="layui-input" maxlength="6" required lay-verify="len6|number" placeholder="6 位数字"
                     id="personnel_confirm_pwd">
             </div>
         </div>

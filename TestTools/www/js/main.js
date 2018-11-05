@@ -23,7 +23,6 @@ layui.config({
     formSelects: "formSelects-v4",
 });
 
-
 layui.use(['layer', 'form', 'table', 'laypage', 'laydate', 'formSelects'], function () {
     form = layui.form;
     formSelects = layui.formSelects;
@@ -40,32 +39,31 @@ layui.use(['layer', 'form', 'table', 'laypage', 'laydate', 'formSelects'], funct
         },
         len4: function (value, item) {
             if (value.length < 4) {
-                return "长度不正确（4 位数字）。"
+                return "长度不正确（4 位数字）。";
             }
         },
         len6: function (value, item) {
-            var elem = $("#" + item.id);
-            if (!elem.prop(DISABLED_PROPERTY) || elem.prop("display")) {
+            var elem = $(item);
+            if (!elem.prop(DISABLED_PROPERTY)) {
                 if (value.length < 6) {
                     return "长度不正确（6位数字）。";
-                } else {
-                    var regex = /^[0-9]{6}$/
-                    if (!regex.test(value)) {
-                        return "只能填写数字。";
-                    }
                 }
             }
         },
-        len6number: function (value, item) {
-            if (value.length < 6) {
-                return "长度不正确（6位数字）。";
+        limitnumber: function (value, item) {
+            var elem = $(item);
+            if (!elem.prop(DISABLED_PROPERTY)) {
+                var regex = /^[0-7]{1}[0-9]{5}$/;
+                if (!regex.test(value)) {
+                    return "口令（密码）不能以8或9开头。";
+                }
             }
         },
         len8: function (value, item) {
-            var elem = $("#" + item.id);
+            var elem = $(item);
             if (!elem.prop(DISABLED_PROPERTY)) {
                 if (value.length < 8) {
-                    return "长度不正确（8 位数字）。"
+                    return "长度不正确（8 位数字）。";
                 } else {
                     var regex = /^[0-9]{8}$/;
                     if (!regex.test(value)) {
@@ -74,7 +72,7 @@ layui.use(['layer', 'form', 'table', 'laypage', 'laydate', 'formSelects'], funct
                 }
             }
         },
-        selectlen: function (value, item) {
+        selectcount: function (value, item) {
             var count = value ? value.split(",").length : 0;
             if (count == 0) {
                 return "请选择挂失的卡片编号";
@@ -264,6 +262,7 @@ layui.use(['layer', 'form', 'table', 'laypage', 'laydate', 'formSelects'], funct
     })
 
     $("#btn_issue").click(function () {
+        if (rowIndex == -1) return;
         var json = HostPostCardInfo(rowIndex);
         var objJson = JSON.parse(json);
         form.val('issueform', {
@@ -597,6 +596,7 @@ layui.use(['layer', 'form', 'table', 'laypage', 'laydate', 'formSelects'], funct
     })
 
     $("#btn_personnel_issue").click(function () {
+        if (rowIndex == -1) return;
         var json = HostPostCardInfo(rowIndex);
         var objJson = JSON.parse(json);
         var time = formatDate(new Date(objJson['CardTime']));
@@ -650,17 +650,31 @@ layui.use(['layer', 'form', 'table', 'laypage', 'laydate', 'formSelects'], funct
         })
     })
 
+    form.on("select(personnel_data_type)", function (data) {
+        if (data.value == "1") {
+            $("#personnel_date").prop(DISABLED_PROPERTY, false);
+            formSelects.undisabled("select5");
+            $("#customdata").prop(DISABLED_PROPERTY, true);
+        } else {
+            $("#personnel_date").prop(DISABLED_PROPERTY, true);
+            formSelects.disabled("select5");
+            $("#customdata").prop(DISABLED_PROPERTY, false);
+        }
+    })
+
     form.on("submit(btn_personnel_enter)", function (data) {
         //var time = new Date($('#personnel_date').val());
+        var datatype = parseInt(data.field.datatype);
         var time = new Date(data.field.date);
         var index = parseInt(data.field.index);
         var partitions = formSelects.value('select5', 'val');
         var partition = PartitionToInt(partitions);
+        var customdata = data.field.customdata;
 
         var msg = "发行中···";
         var ret = true;
         if (index > -1) {
-            ret = HostPostPersonnelIssue(rowIndex, time, partition);
+            ret = HostPostPersonnelIssue(rowIndex, time, partition, datatype, customdata);
         } else {
             HostPostPersonnelBatch(time, 0, partition);
             msg = "批量发行中···";
@@ -1086,7 +1100,7 @@ layui.use(['layer', 'form', 'table', 'laypage', 'laydate', 'formSelects'], funct
     form.on("checkbox(enableddevicepwd)", function (data) {
         var row = $('#control_row');
         if (data.elem.checked) {
-            var content = "<div class='layui-col-md5'><div class='layui-form-item'><label for='' class='layui-form-label'>新密码</label><div class='layui-input-block'><input type='text' class='layui-input' name='devicepwd' id='device_pwd' lay-filter='devicepwd' lay-verify=len6 required placeholder='6 位数字密码' maxlength='6'></div></div></div><div class='layui-col-md5'><div class='layui-form-item'><label for='' class='layui-form-label'>确认密码</label><div class='layui-input-block'><input type='text' class='layui-input' name='confirmdevicepwd' id='confirm_device_pwd' lay-filter='confirmdevicepwd' lay-verify=len6 required placeholder='6 位数字密码' maxlength='6'></div></div></div><div class='layui-col-md2'><div class='layui-form-item'><div class=''><input type='checkbox' title='默认密码' lay-skin='primary' lay-filter='defaultdevicepwd' id='default_device_pwd'></div></div></div>";
+            var content = "<div class='layui-col-md5'><div class='layui-form-item'><label for='' class='layui-form-label'>新密码</label><div class='layui-input-block'><input type='text' class='layui-input' name='devicepwd' id='device_pwd' lay-filter='devicepwd' lay-verify=len6|limitnumber required placeholder='6 位数字密码' maxlength='6'></div></div></div><div class='layui-col-md5'><div class='layui-form-item'><label for='' class='layui-form-label'>确认密码</label><div class='layui-input-block'><input type='text' class='layui-input' name='confirmdevicepwd' id='confirm_device_pwd' lay-filter='confirmdevicepwd' lay-verify=len6|limitnumber required placeholder='6 位数字密码' maxlength='6'></div></div></div><div class='layui-col-md2'><div class='layui-form-item'><div class=''><input type='checkbox' title='默认密码' lay-skin='primary' lay-filter='defaultdevicepwd' id='default_device_pwd'></div></div></div>";
             row.html(content);
 
             row.velocity({
@@ -1107,7 +1121,7 @@ layui.use(['layer', 'form', 'table', 'laypage', 'laydate', 'formSelects'], funct
     form.on("checkbox(enabledhostpwd)", function (data) {
         var row = $('#host_row');
         if (data.elem.checked) {
-            var content = "<div class='layui-row'><div class='layui-col-md10'><div class='layui-form-item'><label for='' class='layui-form-label'>旧密码</label><div class='layui-input-block'><input type='text' name='hostoldpwd' class='layui-input' id='host_old_pwd' lay-filter='hostoldpwd' lay-verify='len6' required placeholder='6 位数字密码' maxlength='6'></div></div></div><div class='layui-col-md2'><div class='layui-form-item'><div class=''><input type='checkbox' title='默认密码' lay-skin='primary' lay-filter='defaulthostoldpwd' id='default_host_old_pwd'></div></div></div></div><div class='layui-row'><div class='layui-col-md5'><div class='layui-form-item'><label for='' class='layui-form-label'>新密码</label><div class='layui-input-block'><input type='text' name='hostpwd' class='layui-input' id='host_pwd' lay-filter='hostpwd' lay-verify='len6' required placeholder='6 位数字密码' maxlength='6'></div></div></div><div class='layui-col-md5'><div class='layui-form-item'><label for='' class='layui-form-label'>确认密码</label><div class='layui-input-block'><input type='text' name='confirmhostpwd' class='layui-input' id='confirm_host_pwd' lay-filter='confirmhostpwd' lay-verify='len6' required placeholder='6 位数字密码'maxlength='6'></div></div></div><div class='layui-col-md2'><div class='layui-form-item'><div><input type='checkbox' name='' title='默认密码' lay-skin='primary' lay-filter='defaulthostpwd' id='default_host_pwd'></div></div></div></div>";
+            var content = "<div class='layui-row'><div class='layui-col-md10'><div class='layui-form-item'><label for='' class='layui-form-label'>旧密码</label><div class='layui-input-block'><input type='text' name='hostoldpwd' class='layui-input' id='host_old_pwd' lay-filter='hostoldpwd' lay-verify='len6|limitnumber' required placeholder='6 位数字密码' maxlength='6'></div></div></div><div class='layui-col-md2'><div class='layui-form-item'><div class=''><input type='checkbox' title='默认密码' lay-skin='primary' lay-filter='defaulthostoldpwd' id='default_host_old_pwd'></div></div></div></div><div class='layui-row'><div class='layui-col-md5'><div class='layui-form-item'><label for='' class='layui-form-label'>新密码</label><div class='layui-input-block'><input type='text' name='hostpwd' class='layui-input' id='host_pwd' lay-filter='hostpwd' lay-verify='len6|limitnumber' required placeholder='6 位数字密码' maxlength='6'></div></div></div><div class='layui-col-md5'><div class='layui-form-item'><label for='' class='layui-form-label'>确认密码</label><div class='layui-input-block'><input type='text' name='confirmhostpwd' class='layui-input' id='confirm_host_pwd' lay-filter='confirmhostpwd' lay-verify='len6|limitnumber' required placeholder='6 位数字密码'maxlength='6'></div></div></div><div class='layui-col-md2'><div class='layui-form-item'><div><input type='checkbox' name='' title='默认密码' lay-skin='primary' lay-filter='defaulthostpwd' id='default_host_pwd'></div></div></div></div>";
 
             row.html(content);
             row.velocity({
@@ -1539,6 +1553,13 @@ layui.use(['layer', 'form', 'table', 'laypage', 'laydate', 'formSelects'], funct
             area: '410px',
             content: $('#downloadpwd'),
         });
+    })
+
+    $('#btn_test_port').click(function () {
+        var ret = HostPostTestPort();
+        if (ret) {
+            LoadingMsg("测试通信中···");
+        }
     })
 
     form.on('checkbox(default_personnel_old_pwd)', function (data) {
@@ -2369,12 +2390,15 @@ function DownloadControlEnabled(enabled) {
 function DownloadControlChange(enabled) {
     var btnTime = $('#btn_download_time').prop(DISABLED_PROPERTY, enabled);
     var btnPassword = $('#btn_download_pwd').prop(DISABLED_PROPERTY, enabled);
+    var btnTestPort = $('#btn_test_port').prop(DISABLED_PROPERTY, enabled);
     if (enabled) {
         btnTime.addClass(BUTTON_DISABLED_CLASS);
         btnPassword.addClass(BUTTON_DISABLED_CLASS);
+        btnTestPort.addClass(BUTTON_DISABLED_CLASS);
     } else {
         btnTime.removeClass(BUTTON_DISABLED_CLASS);
         btnPassword.removeClass(BUTTON_DISABLED_CLASS);
+        btnTestPort.removeClass(BUTTON_DISABLED_CLASS);
     }
     DownloadNumberControlEnabled(enabled);
 }

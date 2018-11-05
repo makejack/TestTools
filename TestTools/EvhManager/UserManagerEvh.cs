@@ -9,6 +9,8 @@ using Model;
 using TestTools.PortDataManagment;
 using System.Reflection;
 using System.Windows.Forms;
+using Chromium.Remote.Event;
+using System.Threading;
 
 namespace TestTools
 {
@@ -31,13 +33,43 @@ namespace TestTools
             Main.GetMain.GlobalObject.AddFunction("HostPostLimitNumberInfo").Execute += Host_PostLimitNumberInfo;
             Main.GetMain.GlobalObject.AddFunction("HostPostAddNumberInfo").Execute += Host_PostAddNumberInfo;
             Main.GetMain.GlobalObject.AddFunction("HostPostDelNumberInfo").Execute += Host_PostDelNumberInfo;
+            Main.GetMain.GlobalObject.AddFunction("HostPostTestPort").Execute += Host_PostTestPort;
         }
+
+        private static void Host_PostTestPort(object sender, CfrV8HandlerExecuteEventArgs e)
+        {
+            try
+            {
+                if (SerialPortManager.Device2.SerialPortDevice.BaudRate != WinApi.B38400)
+                {
+                    SerialPortManager.Device2.SerialPortDevice.SetBaudRate(WinApi.B38400);
+                    Thread.Sleep(10);
+                }
+
+                byte[] by = PortAgreement.TestPort(SerialPortManager.Device2Address);
+                bool ret = SerialPortManager.WriteSerialPortData(SerialPortManager.Device2, by);
+                if (ret)
+                {
+                    ReceivedManager.SetReceivedFunction<TestPort>();
+                }
+                e.SetReturnValue(ret);
+            }
+            catch (Exception ex)
+            {
+                SerialPortManager.Device2.SerialPortDevice.SetBaudRate(WinApi.B19200);
+
+                Log4Helper.ErrorInfo(ex.Message, ex);
+                ViewCallFunction.ViewAlert(ex.Message);
+            }
+        }
+
         private static void Host_PostDownloadPassword(object sender, Chromium.Remote.Event.CfrV8HandlerExecuteEventArgs e)
         {
             try
             {
                 string oldpwd = e.Arguments[0].StringValue;
                 string newpwd = e.Arguments[1].StringValue;
+                
                 byte[] by = PortAgreement.SetPersonnelHostPassword(oldpwd, newpwd);
                 bool ret = SerialPortManager.WriteSerialPortData(SerialPortManager.Device2, by);
                 if (ret)
@@ -59,6 +91,7 @@ namespace TestTools
             {
                 int index = e.Arguments[0].IntValue;
                 UserInfo info = UserManager.UserInfos[index];
+                
                 byte[] bys = PortAgreement.SetPersonnelHostNumber(info.UserNumber);
                 bool ret = SerialPortManager.WriteSerialPortData(SerialPortManager.Device2, bys);
                 if (ret)
@@ -78,6 +111,7 @@ namespace TestTools
         {
             try
             {
+                
                 byte[] bys = PortAgreement.SetPersonnelHostTime();
                 bool ret = SerialPortManager.WriteSerialPortData(SerialPortManager.Device2, bys);
                 if (ret)

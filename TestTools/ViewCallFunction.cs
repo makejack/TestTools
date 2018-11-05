@@ -179,6 +179,6 @@ namespace TestTools
         {
             Main.GetMain.ExecuteJavascript("ViewDownloadOverTime()");
         }
-
+        
     }
 }

@@ -396,11 +396,21 @@ namespace Bll
         /// <summary>
         /// 获取人员通道主机读卡数据
         /// </summary>
-        /// <param name="number"></param>
+        /// <param name="address"></param>
         /// <returns></returns>
-        public static byte[] CorridorReadCardData(int number)
+        public static byte[] CorridorReadCardData(int address)
         {
-            return CombinatorialProtocol(9, 13, -1, number, 0);
+            return CombinatorialProtocol(9, 13, -1, address, 0);
+        }
+
+        /// <summary>
+        /// 测试人员通道通信
+        /// </summary>
+        /// <param name="address"></param>
+        /// <returns></returns>
+        public static byte[] TestPort(int address)
+        {
+            return CombinatorialProtocol(2, 3, -1, address, -1, "000");
         }
 
         private static byte[] CombinatorialProtocol(int head, int end, int functionAddress, int deviceAddress, int command)
@@ -429,7 +439,10 @@ namespace Bll
                 byList.Add((byte)functionAddress);
             }
             byList.AddRange(Utility.IntToAscii(deviceAddress));
-            byList.AddRange(Utility.IntToAscii(command));
+            if (command > -1)
+            {
+                byList.AddRange(Utility.IntToAscii(command));
+            }
             if (data != null)
             {
                 byList.AddRange(data);

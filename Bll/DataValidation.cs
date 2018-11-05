@@ -15,13 +15,21 @@ namespace Bll
 
         private List<byte> m_Bytes;
 
-        public DataValidation()
+        public DataValidation() : this(null)
+        {
+        }
+
+        public DataValidation(DealHeadEnd deal)
         {
             m_Bytes = new List<byte>();
             DealHeadEnds = new List<DealHeadEnd>
             {
                 new DealHeadEnd(2, 3)
             };
+            if (deal != null)
+            {
+                DealHeadEnds.Add(deal);
+            }
         }
 
         public byte[] Combination(byte[] by)

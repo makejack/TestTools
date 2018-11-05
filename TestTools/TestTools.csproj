@@ -82,6 +82,7 @@
     <Compile Include="PortDataManagment\CardOperation\ViceCardRemoveLock.cs" />
     <Compile Include="PortDataManagment\ClientNumber\NumberDownload.cs" />
     <Compile Include="PortDataManagment\ClientNumber\PasswordDownload.cs" />
+    <Compile Include="PortDataManagment\ClientNumber\TestPort.cs" />
     <Compile Include="PortDataManagment\ClientNumber\TimeDownload.cs" />
     <Compile Include="PortDataManagment\CardOperation\DistanceCardLoss.cs" />
     <Compile Include="PortDataManagment\EncryptOperation\DistanceCardEncrypt.cs" />
